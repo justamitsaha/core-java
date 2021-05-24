@@ -1,0 +1,15 @@
+The Java Development Kit (JDK) contains the minimum software you need to do Java development. Key pieces include the compiler (javac), which converts .java files to .class files, and the launcher java, which creates the virtual machine and executes the program
+Other tools like
+1 archiver for packging 
+2 Javadoc for documentation
+The javac program generates instructions in a special format that the java command can run called bytecode. Then java launches the Java Virtual Machine (JVM) before running the code. The JVM knows how to run bytecode on the actual machine it is on.
+
+In previous versions of Java, you could download a Java Runtime Environment (JRE) instead of the full JDK. The JRE was a subset of the JDK that was used for running a program but could not compile one. It was literally a subset. In fact, if you looked inside the directory structure of a JDK in older versions of Java, you would see a folder named jre.
+
+In Java 11, the JRE is no longer available as a stand-alone download or a subdirectory of the JDK. 
+
+Starting in Java 11, you can run a program without compiling it first—well, without typing the javac command. This feature is called launching single-file source-code programs. The name cleverly tells you that it can be used only if your program is one file.
+
+Using wild card to import package like java.util.* will not cause performance issue The compiler figures out what’s actually needed.
+
+There’s one special package in the Java world called java.lang. This package is special in that it is automatically imported.
