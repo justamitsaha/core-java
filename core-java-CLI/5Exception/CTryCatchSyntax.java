@@ -1,0 +1,38 @@
+public class CTryCatchSyntax {
+
+	public static void main(String[] args) {
+		try {
+		} catch (NumberFormatException e) { // DOES NOT COMPILE if this is placed below as NumberFormatException is a subclass of IllegalArgumentException
+		} catch (IllegalArgumentException e) {
+		}
+		
+		try {
+			System.out.println(Integer.parseInt(args[1]));
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Missing or invalid input");
+		} catch (NumberFormatException e) {
+			System.out.println("Missing or invalid input");
+		
+		//Above can be written in below format also which is better sysntax
+
+		try {
+			System.out.println(Integer.parseInt(args[1]));
+		} catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+			System.out.println("Missing or invalid input");
+		}
+
+		//catch(Exception1 e | Exception2 e | Exception3 e) // DOES NOT COMPILE
+		//catch(Exception1 e1 | Exception2 e2 | Exception3 e3) // DOES NOT COMPILE
+
+
+		
+		try {
+			throw new IOException();
+		} catch (FileNotFoundException | IOException p) {
+
+		} // DOES NOT COMPILE Since FileNotFoundException is a subclass of IOException, this code will not compile
+
+
+
+	}
+}
