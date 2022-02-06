@@ -6,5 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="core-java-CLI/"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
