@@ -1,1 +1,0 @@
-Before Java 8 an interface can only have abstract method but with java 8 interface can also have methods with implementation i.e not abstract
