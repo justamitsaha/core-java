@@ -3,8 +3,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-public class A_AATest {
-	public void fly(int numMiles) {}
+public class A_overloading {
+    public void fly(int numMiles) {}
     public void fly(short numFeet) {}
     public boolean fly() {return false;}
     void fly(int numMiles, short numFeet) {}
@@ -36,7 +36,7 @@ public class A_AATest {
     //public void walk(List<Integer> integers) {}    // DOES NOT COMPILE
 
     public static void main(String[] args) {
-    	A_AATest obj = new A_AATest();
+        A_overloading obj = new A_overloading();
 
         Integer i =56;
         obj.fly7(56);
@@ -49,6 +49,4 @@ public class A_AATest {
         print(new ArrayList<>());
         print(LocalDate.of(2019, Month.JULY, 4));
     }
-
 }
-
