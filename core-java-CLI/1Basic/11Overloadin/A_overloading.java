@@ -33,7 +33,13 @@ public class A_overloading {
     public static void print(Object o) {System.out.print("O");}
 
     public void walk(List<String> strings) {}
-    //public void walk(List<Integer> integers) {}    // DOES NOT COMPILE
+    //public void walk(List<Integer> integers) {}    // DOES NOT COMPILE becaus at compile time as per Generics it will be concidered as below
+    //public void walk(List strings) {};
+    //public void walk(List integers) {}
+
+    //BELOW WILL COMPILE FINE
+    public static void walk(int[] ints) {}
+    public static void walk(Integer[] integers) {}
 
     public static void main(String[] args) {
         A_overloading obj = new A_overloading();
@@ -46,7 +52,7 @@ public class A_overloading {
         obj.fly8(12);
 
         print("abc");
-        print(new ArrayList<>());
+        print(new ArrayList<>());           //Iterable is an interface for classes you can iterate over
         print(LocalDate.of(2019, Month.JULY, 4));
     }
 }
