@@ -1,5 +1,9 @@
-public class F_NoArgumentConstructor {
+//When there is no
 
+public class F_NoArgumentConstructor {
+    public static void main(String[] args) {
+        
+    }
 }
 
 class Mammal {
@@ -8,7 +12,7 @@ class Mammal {
 }
 
 // public class Elephant extends Mammal { } // DOES NOT COMPILE
-// Since Elephant does not define any constructors, the Java compiler will attempt to insert a default no-argument constructor. As a second compile-time enhancement, it will also auto-insert a call to super() as the first line of the default no-argument constructor
+// When no constructor is defined, then java compiler by default inserts a no argument constructor. And by default a no argument constructor will insert a super call leading to below code which will fail
 
 // public class Elephant extends Mammal {
 //     public Elephant() {
@@ -17,8 +21,8 @@ class Mammal {
 // }
 
 
-public class Elephant extends Mammal {
+class Elephant extends Mammal {
     public Elephant() {
        super(10);
     }
- }
+}

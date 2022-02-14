@@ -1,15 +1,4 @@
-//Run Below cmd in CLI so see the output
-//javac CLIClass.java
-//java CLIClass "Bal" "Chal"
-//Below will throw error
-// java CLIClass "Bal"
 
-
-//Starting in Java 11, you can run a program without compiling it first—well, without typing the javac command
-//But need to provide .java extension with java file name 
-//java CLIClass.java "Bal" "Chal"
-
-//it can be used only if your program is one file. This means if your program has two .java files, you still need to use javac
 public class CLIClass {
 
 	public static void main(String[] args) {
@@ -18,4 +7,32 @@ public class CLIClass {
 
 	}
 
+}
+
+
+class Mammal {
+    public Mammal(int age) {
+    }
+}
+
+// public class Elephant extends Mammal { } // DOES NOT COMPILE
+// When no constructor is defined, then java compiler by default inserts a no argument constructor. And by default a no argument constructor will insert a super call leading to below code which will fail
+
+// public class Elephant extends Mammal {
+//     public Elephant() {
+//         super(); // DOES NOT COMPILE
+//     }
+// }
+
+
+class Elephant extends Mammal {
+    public Elephant() {
+       super(10);
+    }
+}
+
+class Dogs extends Mammal {
+    public Dogs(){
+    	super(10);
+    }
 }
