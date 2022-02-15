@@ -26,3 +26,11 @@ class Elephant extends Mammal {
        super(10);
     }
 }
+//with go argument Constructoer present there is no Such issue
+class Plant {
+    Plant(){}
+}
+
+class Oak extends Plant {
+    Oak() {}
+}
