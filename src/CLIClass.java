@@ -2,37 +2,34 @@
 public class CLIClass {
 
 	public static void main(String[] args) {
-		System.out.println("Main method sysout "+args[0]);
-		System.out.println("Main method sysout "+args[1]);
+		new Monkey();
 
 	}
 
 }
 
 
-class Mammal {
-    public Mammal(int age) {
-    }
-}
+class Primate {
+	   public Primate() { System.out.println("Primate-");}
+	}
 
-// public class Elephant extends Mammal { } // DOES NOT COMPILE
-// When no constructor is defined, then java compiler by default inserts a no argument constructor. And by default a no argument constructor will insert a super call leading to below code which will fail
+	class Ape extends Primate {
+	   public Ape(int fur) {System.out.println("Ape1-");}
 
-// public class Elephant extends Mammal {
-//     public Elephant() {
-//         super(); // DOES NOT COMPILE
-//     }
-// }
+	   public Ape() {System.out.println("Ape2-");}
+	}
 
+	class Monkey extends Ape {
+	   private String name = "swimmy";
+	   {System.out.println(name);}
+	   private static int COUNT = 0;
+	   static {System.out.println(COUNT); }
+	   {COUNT++;System.out.println(COUNT); }
 
-class Elephant extends Mammal {
-    public Elephant() {
-       super(10);
-    }
-}
+	   public Monkey() {
+	      // System.out.println("Constructor"); Will not compile
+	      //super(2);
+	      System.out.println("Monkey Constructor");
+	 }
 
-class Dogs extends Mammal {
-    public Dogs(){
-    	super(10);
-    }
 }
