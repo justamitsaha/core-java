@@ -4,45 +4,29 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 class Bird {
-	public void fly() {
-		System.out.println("Bird is flying");
-	}
-	public void eat(int food) {
-		System.out.println("Bird is eating " + food + " units of food");
-	}
-	
+	public void fly(int wings) { }
 	//Since IOException is the parent of FileNotFoundException hence overriding methods won't face a problem
-	Object reproduce() throws IOException{ Object obj = new String("lays egg");return obj;}
-	
+	CharSequence reproduce() throws IOException{ return "kid";}
 	void hunt() throws FileNotFoundException{}
-	
-	//No issues while overriding with checked exception
 	void die() throws ArithmeticException {}
 }
 
 public class Eagle extends Bird {
 	//Since the signature is changing hence its overloading so return type can be different
-	public int fly(int height) {
-		System.out.println("Bird is flying at " + height + " meters");
-		return height;
-	}
-
-	/*
-	 * Since the Signature is same return type should be same or a sub type of
-	 * parent public int eat(int food) { System.out.println("Bird is eating " + food + " units of food"); return food;}
-	 */
+	public int fly() {return 5; }
 	
-	// Since String is a sub type of Object this will compile
+	 //Since the Signature is same return type should be same or a sub type of parent 
+	 //public int fly(int wings) { return wings;} 
+	
+	// String implements the CharSequence interface, making String a sub type of CharSequence also FileNotFoundException is a sub type of IOException
 	@Override
 	String reproduce() throws FileNotFoundException{return "lays egg";}
 
-	/*
-	 * Since FileNotFoundException is a sub class of IOException below will not compile since child class may not declare
-	 * a checked exception that is new or broader than the class of any exception declared in the parent class  
-	 void hunt () throws IOException {System.out.println("hunting");} */
+	//Since FileNotFoundException is a sub class of IOException below will not compile
+	 //void hunt () throws IOException {System.out.println("hunting");} 
 	void hunt () {System.out.println("hunting");}
-	
-	
+
+	//No issues while overriding with checked exception
 	@Override
 	void die() throws IllegalArgumentException {}
 
