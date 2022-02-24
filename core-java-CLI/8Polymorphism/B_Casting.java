@@ -15,7 +15,6 @@ public class B_Casting extends Parent {
             System.out.println("4");
             Parent p2 = new B_Casting();
             b2 = (B_Casting)p2;
-            //b2 = (Parent)p;
         }
     }
 }
