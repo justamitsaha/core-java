@@ -1,5 +1,4 @@
 public class B_Casting extends Parent {
-    int i =10;
     public static void main(String[] args) {
         B_Casting b = new B_Casting();
         Parent p = new Parent();
@@ -22,7 +21,8 @@ public class B_Casting extends Parent {
 class Parent {}
 
 //Key 
-// Casting a reference from a subtype to a supertype doesn’t require an explicit cast.
-// Casting a reference from a supertype to a subtype requires an explicit cast.
+// Assigning a child value to parent doesnot require cast P = C
+// Assigning a parent value to child doesnot requires cast C = (C)P
 // The compiler disallows casts to an unrelated class.
 // At runtime, an invalid cast of a reference to an unrelated type results in a ClassCastException being thrown.
+// Child is an instance of parent, parent is not an instance of Child
