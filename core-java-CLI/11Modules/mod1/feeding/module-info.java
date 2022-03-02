@@ -1,3 +1,3 @@
-module zoo.animal {
-    exports zoo.animal;
+module zoo.animal.feeding {
+    exports zoo.animal.feeding;
 }
