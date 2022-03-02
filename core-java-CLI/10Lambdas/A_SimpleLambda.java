@@ -1,4 +1,3 @@
-
 public class A_SimpleLambda {
 
 	public static void main(String[] args) {
