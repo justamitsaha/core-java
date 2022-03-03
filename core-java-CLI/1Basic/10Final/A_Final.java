@@ -1,13 +1,32 @@
-import java.util.ArrayList;
-;
+import java.util.ArrayList;;
+
 public class A_Final {
-    private static final ArrayList<String> values = new ArrayList<>();
-    private static final int NUM_BUCKETS = 45;
-    //Below will not compile because its value is not initialized
-    //private static final int HOURS_IN_DAY;
     public static void main(String[] args) {
-       values.add("changed");
-       //NUM_BUCKETS = 5;  // DOES NOT COMPILE
-       System.out.println(NUM_BUCKETS);
+        final int giraffe = 5;
+        final long lemur;
+        if (giraffe > 0)
+            lemur = 5;
+        else
+            lemur = 10;
+        System.out.println(giraffe + " " + lemur);
+
+        final Animal an = new Animal();
+        an.legs = 6;
+        an.legs = 4;
+        Animal an1 = new Animal();
+        //an = an1;
+
+        final Integer i = 7;
+        //i = 7;
+        final String s = "yo";
+        //s = "dd";
     }
 }
+
+class Animal {
+    int legs;
+}
+
+// Marking a variable final means the value cannot be changed after it is assigned.
+// Final variables referencing Objects can chnage the member variable of the Object. since the final variable holdes the memory location,the final variable can't point to another object as in that case the momory location it points to is changing.
+// Won't be applicable for Object of classes like Integer, Bollean, String etc. as it points to primitive not reference of Object
