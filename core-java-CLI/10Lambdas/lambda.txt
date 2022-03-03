@@ -1,0 +1,7 @@
+a, b -> a.startsWith("test")	Missing parentheses
+a -> { a.startsWith("test"); }	Missing return
+a -> { return a.startsWith("test") }	Missing semicolon
+
+There are four functional interfaces you are likely to see on the exam. The next sections take a look at Predicate, Consumer, Supplier, and Comparator.
+
+Additionally, var can be used in place of the specific type

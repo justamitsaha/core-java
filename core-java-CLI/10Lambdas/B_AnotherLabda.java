@@ -1,4 +1,3 @@
-
 public class B_AnotherLabda {
 
 	public static void main(String[] args) {
