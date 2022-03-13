@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class C_List {
+public class C_ListBasic {
 	public static void main(String[] args) {
 		// Arraylist uses an array as its underlying data stucture. Problem with array is that it is of fixed length while declaring. Array list fixes this creating
 		// a new array behind the scene when any manipulation is done to list, This takes a lot of array and resources for any
@@ -19,6 +19,7 @@ public class C_List {
 		List<String> ll = new LinkedList<>();
 		addValuesToList(ll);
 		find(ll);
+		ll =ar;
 	}
 
 	static void addValuesToList(List<String> li) {
