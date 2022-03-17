@@ -12,11 +12,13 @@ public class E_ListImplementation {
 		list.add(0, "NY");               
 		list.set(1, "FL");
 		list.add(2, "LA");
-		System.out.println(list); 
+		System.out.println(list.get(2));
+		//System.out.println(list.get(12));   If index is higher than the length then will throw IndexOutOfBoundsException
 		list.remove("NY");               
 		list.remove(0);    
 		list.set(0, "?");                // Set will only add if the element is already present otherwise will throw IndexOutOfBoundsException
 		System.out.println(list);
+		
 		List<Integer> numbers = Arrays.asList(1, 2, 3);
 		numbers.replaceAll(x -> x*2);
 		System.out.println(numbers);   // [2, 4, 6]

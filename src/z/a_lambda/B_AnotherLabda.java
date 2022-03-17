@@ -1,4 +1,4 @@
-package z.lambda;
+package z.a_lambda;
 
 public class B_AnotherLabda {
 

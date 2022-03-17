@@ -1,4 +1,4 @@
-package z.lambda;
+package z.a_lambda;
 
 import java.util.function.BiConsumer;
 

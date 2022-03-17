@@ -1,4 +1,4 @@
-package z.methodreference;
+package z.b_methodreference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
