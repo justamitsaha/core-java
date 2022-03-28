@@ -12,10 +12,17 @@ public class A_optional {
 		if (opt.isPresent())
 			System.out.println(opt.get()); // 95.0
 		
-		opt.ifPresent(System.out::println);
+		opt.ifPresent(System.out::println);  //Calls Consumer with value
 		
 		Optional<Double> opt1 = average();
-		System.out.println(opt1.get()); // NoSuchElementException
+		//System.out.println(opt1.get()); // NoSuchElementException
+		
+		
+		Optional<Double> opt2 = average();
+		System.out.println(opt2.orElse(Double.NaN));
+		System.out.println(opt2.orElseGet(() -> Math.random()));
+		//System.out.println(opt2.orElseThrow()); // NoSuchElementException
+		System.out.println(opt2.orElseThrow(() -> new IllegalStateException()));  //Throws exception created by calling Supplier
 		
 		
 	}
