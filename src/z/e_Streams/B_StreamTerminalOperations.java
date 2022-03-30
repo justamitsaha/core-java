@@ -38,7 +38,9 @@ public class B_StreamTerminalOperations {
 		//REDUCE example 1 ->> T reduce(T identity, BinaryOperator<T> accumulator)
 		Stream<String> stream = Stream.of("w", "o", "l", "f");
 		String word = stream.reduce("", (x, c) -> x + c);
-		System.out.println(word);
+		String word2 = stream.reduce("", String::concat);
+		System.out.println(word); 
+		System.out.println(word2);
 		
 		//REDUCE example 2 -->> Optional<T> reduce(BinaryOperator<T> accumulator)
 		BinaryOperator<Integer> op = (a, b) -> a * b;
