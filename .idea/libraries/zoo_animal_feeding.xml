@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="zoo.animal.feeding">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/core-java-CLI/11Modules/mod1/mods/zoo.animal.feeding.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

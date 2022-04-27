@@ -23,6 +23,7 @@ public class A_CreateStream {
 		//Infinite Stream
 		Stream<Double> randoms = Stream.generate(Math::random);
 		Stream<Integer> oddNumbers = Stream.iterate(1, n -> n + 2);
+		Stream.generate(() -> "Elsa");
 		
 		
 		Stream<Integer> oddNumberUnder100 = Stream.iterate(1, n -> n < 100, n -> n + 2);

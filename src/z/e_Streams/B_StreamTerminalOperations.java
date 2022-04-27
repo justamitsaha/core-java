@@ -57,14 +57,17 @@ public class B_StreamTerminalOperations {
 		threeElements.reduce(op).ifPresent(System.out::println); // 90
 		
 		//REDUCE example 3 -->> <U> U reduce(U identity, BiFunction<U,? super T,U> accumulator, BinaryOperator<U> combiner)
+		//The third method signature is used when we are dealing with different types. It allows Java to create intermediate reductions and then combine them at the end
 		Stream<String> stream1 = Stream.of("w", "o", "l", "f!");
-		int length = stream1.reduce(0, (i, w) -> i+w.length(), (a, b) -> a+b);
+		int length = stream1.reduce(0, 
+				(i, w) -> i+w.length(),
+				(a, b) -> a+b);
 		System.out.println(length);
 		
 		//collect()  <R> R collect(Supplier<R> supplier, BiConsumer<R, ? super T> accumulator, BiConsumer<R, R> combiner)
 		Stream<String> stream2 = Stream.of("w", "o", "l", "f");
 		StringBuilder word3 = stream2.collect(StringBuilder::new,StringBuilder::append,StringBuilder::append);
-		System.out.println(word3);
+		System.out.println("Collect "+word3);
 				
 		
 		
