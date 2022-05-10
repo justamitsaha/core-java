@@ -1,0 +1,47 @@
+In Java, all exceptions that inherit Exception but not RuntimeException are considered checked exceptions.
+"RuntimeException" :- and its subclasses are unchecked exceptions that don't  have to be handled or declared. They can be thrown by the programmer or by the JVM. Common RuntimeException classes include the following:
+
+1> "ArithmeticException" :- Thrown when code attempts to divide by zero
+
+2> "ArrayIndexOutOfBoundsException" Thrown when code uses an illegal index to access an array
+
+3> "ClassCastException" :- Thrown when an attempt is made to cast an object to a class of which it is not an instance
+
+3> "NullPointerException" :- Thrown when there is a null reference where an object is required
+
+4> "IllegalArgumentException" :- Thrown by the programmer to indicate that a method has been passed an illegal or inappropriate argument
+
+5> "NumberFormatException" :- Subclass of "IllegalArgumentException" thrown when an attempt is made to convert a string to a numeric type but the string doesn’t have an  appropriate format
+
+        Integer.parseInt("abc");
+        Exception in thread "main"
+        java.lang.NumberFormatException: For input string: "abc"
+
+
+<---------------------------------------------------------------------------------->
+
+"Checked Exception Classes" :- Checked exceptions have Exception in their hierarchy but not RuntimeException
+    "IOException"
+    "FileNotFoundException" Subclass of IOException
+
+<------------------------------------------------------------------------------------>
+
+"Error Classes" :-Errors are unchecked exceptions that extend the Error class. They are thrown by the JVM and should not be handled or declared. Errors are rare, but you might see these:
+    "ExceptionInInitializerError":- Thrown when a static initializer throws an exception and doesn’t handle it.  Java runs static initializers the first time a class is used. If one of the static initializers throws an exception, Java can’t start using the class. It declares defeat by throwing an ExceptionInInitializerError.
+
+        static {
+            int[] countsOfMoose = new int[3];
+            int num = countsOfMoose[-1];
+        }
+        public static void main(String... args) { }
+
+        Exception in thread "main" java.lang.ExceptionInInitializerError
+        Caused by: java.lang.ArrayIndexOutOfBoundsException: -1 out of bounds for length 3
+
+    "StackOverflowError" :- Thrown when a method calls itself too many times (This is called infinite recursion because the method typically calls itself without end.)
+        public static void doNotCodeThis(int num) {
+            doNotCodeThis(1);
+        }
+        Exception in thread "main" java.lang.StackOverflowError
+
+    "NoClassDefFoundError" :- Thrown when a class that the code uses is available at compile time but not runtime

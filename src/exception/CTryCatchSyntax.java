@@ -1,4 +1,5 @@
-import java.io.IOException;
+package exception;
+
  
 public class CTryCatchSyntax {
  
@@ -44,7 +45,8 @@ public class CTryCatchSyntax {
  
     // The throw in try and catch is forgotten and finally exception in finally gets
     // executed
-    public static void throwException() throws Exception {
+    @SuppressWarnings("finally")
+	public static void throwException() throws Exception {
         try {
             throw new RuntimeException();
         } catch (RuntimeException e) {

@@ -68,9 +68,11 @@ public class B_StreamTerminalOperations {
 		Stream<String> stream2 = Stream.of("w", "o", "l", "f");
 		StringBuilder word3 = stream2.collect(StringBuilder::new,StringBuilder::append,StringBuilder::append);
 		System.out.println("Collect "+word3);
-				
 		
-		
+		//										<R> R collect(Supplier<R> supplier,  BiConsumer<R, ? super T> accumulator, BiConsumer<R, R> combiner)
+	    Stream<String> stream3 = Stream.of("w", "o", "l", "f");
+	    StringBuilder word4 = stream3.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
+	    System.out.println(word4); // wolf
 	}
 
 }

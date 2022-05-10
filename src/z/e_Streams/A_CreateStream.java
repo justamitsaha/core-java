@@ -21,11 +21,13 @@ public class A_CreateStream {
 		Stream<String> fromListParallel = list.parallelStream();
 
 		//Infinite Stream
+		//Stream.generate(supplier)
 		Stream<Double> randoms = Stream.generate(Math::random);
+		//Stream.iterate(seed, unaryOperator)
 		Stream<Integer> oddNumbers = Stream.iterate(1, n -> n + 2);
 		Stream.generate(() -> "Elsa");
 		
-		
+		//Stream.iterate(seed, predicate, unaryOperator)
 		Stream<Integer> oddNumberUnder100 = Stream.iterate(1, n -> n < 100, n -> n + 2);
 		System.out.print(oddNumberUnder100);
 	}
