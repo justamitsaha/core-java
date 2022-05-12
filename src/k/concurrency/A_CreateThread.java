@@ -9,6 +9,7 @@ public class A_CreateThread implements Runnable {
 	}
 
 	public static void main(String[] args) {
+		(new ReadInventoryThread()).start();
 		(new Thread(new A_CreateThread())).start();
 		(new ReadInventoryThread()).start();
 	}
@@ -19,9 +20,5 @@ class ReadInventoryThread extends Thread {
 	public void run() { // Overrides method in Thread
 		System.out.println("Printing zoo inventory");
 		System.out.println("<------------->");
-	}
-
-	public static void main(String[] args) {
-		(new ReadInventoryThread()).start();
 	}
 }
