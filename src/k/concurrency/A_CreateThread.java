@@ -12,6 +12,9 @@ public class A_CreateThread implements Runnable {
 		(new ReadInventoryThread()).start();
 		(new Thread(new A_CreateThread())).start();
 		(new ReadInventoryThread()).start();
+		
+		Runnable sloth = () -> System.out.println("Hello World");
+		sloth.run();
 	}
 }
 
