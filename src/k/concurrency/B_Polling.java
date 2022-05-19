@@ -4,6 +4,7 @@ public class B_Polling {
 	private static int counter = 0;
 	private static final int desiredValue = 500000;
 
+	//one thread often needs to wait for the results of another thread to proceed. One solution is to use polling. Polling is the process of intermittently checking data at some fixed interval
 	public static void main(String[] args) throws InterruptedException {
 		new Thread(() -> {
 			for (int i = 0; i < desiredValue; i++)
