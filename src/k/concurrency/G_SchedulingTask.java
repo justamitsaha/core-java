@@ -1,6 +1,5 @@
 package k.concurrency;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -11,18 +10,12 @@ import java.util.concurrent.TimeoutException;
 public class G_SchedulingTask {
 
 	public static void main(String[] args) {
-		Runnable task = (() -> {
-			System.out.println("This is a runnable task");
-		});
-		Callable<String> task2 = (() -> {
-			System.out.println("This is callable task");
-			return "This is callable task";
-		});
+		
 
 		// ScheduledExecutorService creates a new thread in the mentioned duration
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-		service.schedule(task, 1, TimeUnit.MINUTES);
-		ScheduledFuture<String> s = service.schedule(task2, 2, TimeUnit.SECONDS);
+		service.schedule(Z_UTIL.runnableTask1, 1, TimeUnit.MINUTES);
+		ScheduledFuture<Integer> s = service.schedule(Z_UTIL.callableTask1, 2, TimeUnit.SECONDS);
 		System.out.println("<--------------> " + Thread.activeCount());
 		try {
 			// The duration of the get should be such that the thread is execution is
@@ -32,11 +25,8 @@ public class G_SchedulingTask {
 			e.printStackTrace();
 		}
 
-		Runnable task3 = (() -> {
-			System.out.println("This is a runnable task3");
-		});
-		service.scheduleAtFixedRate(task, 5, 1, TimeUnit.SECONDS);
-		service.scheduleWithFixedDelay(task3, 0, 2, TimeUnit.SECONDS);
+		service.scheduleAtFixedRate(Z_UTIL.runnableTask1, 5, 1, TimeUnit.SECONDS);
+		service.scheduleWithFixedDelay(Z_UTIL.runnableTask1, 0, 2, TimeUnit.SECONDS);
 		System.out.println("<--------------> " + Thread.activeCount());
 	}
 }

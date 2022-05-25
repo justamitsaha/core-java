@@ -1,6 +1,5 @@
 package k.concurrency;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,20 +12,13 @@ public class D_Callable {
 	public static void main(String[] args) {
 		ExecutorService service = null;
 		try {
-			Callable<Integer> task = (() -> 30 + 11);
 			service = Executors.newSingleThreadExecutor();
-			Future<Integer> result = service.submit(task);
+			Future<Integer> result = service.submit(Z_UTIL.callableTask1);
 			System.out.println(result.get(1, TimeUnit.SECONDS)); 
-		} catch (InterruptedException e) {
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		} catch (TimeoutException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (service != null)
-				service.shutdown();
+		}finally {
+			Z_UTIL.threadShutdown(service, 1);
 		}
 	}
 
