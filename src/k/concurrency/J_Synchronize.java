@@ -10,7 +10,7 @@ public class J_Synchronize {
 	private void incrementAndReport() {
 		//Although all threads are still created and executed at the same time, they each wait at the synchronized block for the worker to increment and report the result before entering. 
 		synchronized (this) {
-			System.out.print((++sheepCount) + " ");
+			System.out.print((++sheepCount) + " ,");
 		}
 	}
 

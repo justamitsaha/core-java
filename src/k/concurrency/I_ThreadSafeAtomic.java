@@ -10,14 +10,15 @@ public class I_ThreadSafeAtomic {
 	private static AtomicInteger atomicCount = new AtomicInteger(0);
 
 	private static void incrementAndReport() {
-		System.out.println((count++) + " ");
+		System.out.print((++count) + " ,");
 	}
 
 	public static void main(String[] args) {
-		//nonAtomicincrement();
-		atomicincrement();
+		nonAtomicincrement();
+		//atomicincrement();
 	}
 
+	//There is no guarantee that this will give correct output
 	public static void nonAtomicincrement() {
 		try {
 			service = Executors.newFixedThreadPool(20);
@@ -33,7 +34,7 @@ public class I_ThreadSafeAtomic {
 			service = Executors.newFixedThreadPool(20);
 			for (int i = 0; i < 10; i++)
 				service.submit(() -> {
-					System.out.println(atomicCount.incrementAndGet());
+					System.out.print(atomicCount.incrementAndGet() + " ,");
 				});
 		} finally {
 			Z_UTIL.threadShutdown(service, 1);
