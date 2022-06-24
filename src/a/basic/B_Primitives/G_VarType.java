@@ -34,6 +34,6 @@ class x {
 		//var i = {1,2,3}; // here the type on right side is inferred so won't work
 		var i = new int[] {1,2,3};
 		//var [] j = new int[] {1,2,3};
-		var s,u =7;
+		//var s,u =7;
 	}
 }

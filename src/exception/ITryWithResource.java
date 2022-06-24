@@ -44,7 +44,9 @@ public class ITryWithResource {
 		MyFileReader movieReader = new MyFileReader("6");
 		// a try‐with‐resources statement can include multiple resources, which are
 		// closed in the reverse order in which they are declared
-		try (bookReader; var tvReader = new MyFileReader("5"); movieReader) {
+		try (bookReader; 
+				var tvReader = new MyFileReader("5"); 
+				movieReader) {
 			System.out.println("Try Block");
 		} finally {
 			System.out.println("Finally Block");

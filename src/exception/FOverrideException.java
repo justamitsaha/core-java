@@ -14,9 +14,9 @@ class Hopper {
     public void hop() {
     }
 }
- 
+
+//  Doesn't compile since When a class overrides a method from a superclass or implements a method from an interface, it's not allowed to add new checked exceptions to the method signature
 class Bunny extends Hopper {
-//  Doesn't compile since When a class overrides a method from a superclass or implements a method from an interface, it’s not allowed to add new checked exceptions to the method signature
 //  public void hop() throws CanNotHopException {
 //  }
 }
@@ -30,8 +30,8 @@ class Jump {
     }
 }
  
+//This will compile since the exception is Runtime exception
 class Horse extends Jump {
-    //This will compile since the exception is Runtime exception
     public void jump() throws CanJumpException {
     }
 }
