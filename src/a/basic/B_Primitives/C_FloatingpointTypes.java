@@ -4,7 +4,7 @@ public class C_FloatingpointTypes {
         //The type float specifies a single-precision value that uses 32 bits of storage. Single precision is faster on some processors and takes half as much space as double precision, but will become imprecise when the values are either very large or very small
         
         //Float requires f to be mentioned or F
-        float f = 32.890880f;
+        float f = 32.890880657f;
         float a = 5;                //This will compile
         //float x = 32.0;         //But this one not
         float b = 10/3;
@@ -19,7 +19,7 @@ public class C_FloatingpointTypes {
         //Floating-point literals in Java default to double precision. You can also explicitly specify a double literal by appending a D or d. Doing so is, of course, redundant
         System.out.println("Double example");
         double e = 10/3d;
-        double g = 32.3224234;
+        double g = 32.3224234123;
         System.out.println(e);
         System.out.println(g);
 

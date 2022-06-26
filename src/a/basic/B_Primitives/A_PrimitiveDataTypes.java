@@ -14,7 +14,7 @@ public class A_PrimitiveDataTypes {
         long d = 672329836982683L;      // 64 bit               2 power 64              -9,223,372,036,854,775,808 to 9,223,372,036,854,775,808
 
         float e = 123.4f;
-        double f = 1.234e2;
+        double f = 1.234d;
 
         char g= '3';                    // 16 bit simmilar to short
         

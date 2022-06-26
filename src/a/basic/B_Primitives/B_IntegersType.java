@@ -2,7 +2,7 @@ package a.basic.B_Primitives;
 //Java defines four integer types: byte, short, int, and long
 public class B_IntegersType{
     public static void main (String args[]){
-        //The smallest integer type is byte, byte are especially useful when you’re working with a stream of data from a network or file. They are also useful when you’re working with raw binary data that may not be directly compatible with Java’s other built-in types.
+        //The smallest integer type is byte, byte are especially useful when you are working with a stream of data from a network or file. They are also useful when you are working with raw binary data that may not be directly compatible with Java's other built-in types.
         //Although you might think that using a byte or short would be more efficient than using an int in situations in which the larger range of an int is not needed, this may not be the case. The reason is that when byte and short values are used in an expression, they are promoted to int when the expression is evaluated
         byte b = -49;
         System.out.println(b);
