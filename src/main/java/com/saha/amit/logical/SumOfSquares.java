@@ -1,4 +1,4 @@
-package com.saha.amit;
+package com.saha.amit.logical;
 
 import java.util.Optional;
 import java.util.stream.Stream;
