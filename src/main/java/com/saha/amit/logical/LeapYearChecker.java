@@ -1,4 +1,4 @@
-package com.saha.amit;
+package com.saha.amit.logical;
 
 /**
  * You are given a class LeapYearChecker with a method isLeapYear(int year). Your task is to complete the implementation of the method to determine if a given year is a leap year.
