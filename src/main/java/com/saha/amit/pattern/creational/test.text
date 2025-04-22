@@ -1,0 +1,29 @@
+com.example.patterns
+├── creational/
+│   ├── factory/
+│   ├── abstractfactory/
+│   ├── builder/
+│   ├── singleton/
+│   ├── prototype/
+│   └── dependencyinjection/
+├── structural/
+│   ├── adapter/
+│   ├── bridge/
+│   ├── composite/
+│   ├── decorator/
+│   ├── facade/
+│   ├── flyweight/
+│   └── proxy/
+├── behavioral/
+│   ├── strategy/
+│   ├── observer/
+│   ├── command/
+│   ├── templatemethod/
+│   ├── iterator/
+│   ├── state/
+│   ├── visitor/
+│   ├── mediator/
+│   ├── memento/
+│   └── chainofresponsibility/
+└── utils/
+    └── CommonClasses.java
