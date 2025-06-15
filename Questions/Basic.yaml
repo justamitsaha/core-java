@@ -1,0 +1,12 @@
+- question : What is the Byte code .class file or .java file?
+  answers: > 
+    .class files
+  
+- question : Is JVM platform dependent ?
+  answers: >
+    Yes, JVM is platform dependent because it converts byte code to binary code to be understood by OS
+         Since each OS is different hence JVM is platform dependent hence we have installers for different OS
+
+- question: Can we run .class file if we only have JRE?
+  answers: >
+    Yes we can run .class files, but we can't compile .java files
