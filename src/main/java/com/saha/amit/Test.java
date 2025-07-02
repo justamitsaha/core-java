@@ -1,12 +1,19 @@
 package com.saha.amit;
 
 public class Test {
+
     public static void main(String[] args) {
-        Box b1 = new Box(1,1,1); // Points to location in memory
+        byte i =4 ;
+        byte j = 6;
+        var k = i+j;
+
+        Box b1 = new Box(1,1,1);
         Box b2 = b1;
         b1 = null;
         System.out.println(b2.length);
+
     }
+
 }
 
 class Box {
@@ -22,4 +29,5 @@ class Box {
         this.length = length;
     }
 }
+
 
