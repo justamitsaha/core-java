@@ -3,14 +3,19 @@ package com.saha.amit;
 public class Test {
 
     public static void main(String[] args) {
-        byte i =4 ;
-        byte j = 6;
-        var k = i+j;
+        Integer i1 = 127;
+        Integer i2 = 127;
+        System.out.println(i1 == i2);
+        System.out.println(i1.equals(i2));
+        i1 = 128;
+        i2 = 128;
+        System.out.println(i1 == i2);
+        System.out.println(i1.equals(i2));
 
-        Box b1 = new Box(1,1,1);
-        Box b2 = b1;
-        b1 = null;
-        System.out.println(b2.length);
+
+
+
+
 
     }
 
