@@ -22,7 +22,7 @@ public class StreamSorting {
     }
 }
 
-class Person implements Comparable {
+class Person {
     String name;
     int age;
 
@@ -39,8 +39,4 @@ class Person implements Comparable {
                 '}';
     }
 
-    @Override
-    public int compareTo(Object person) {
-        Person p = (Person) person;
-    }
 }
