@@ -5,10 +5,12 @@ import java.util.Date;
 public class Test {
 
     public static void main(String[] args) {
-        Date date = new Date();
-        java.sql.Date date1 = new java.sql.Date(31312);
-        System.out.println(date);
-        System.out.println(date1);
+
+
+
+        int x, y, z;
+        x = y = z = 22;
+
 
     }
 
