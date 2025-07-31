@@ -3,31 +3,37 @@ package testing;
 import java.util.Date;
 
 public class Test {
-
-    public static void main(String[] args) {
-
-
-
-        int x, y, z;
-        x = y = z = 22;
-
-
+    static {
+        System.out.println("Block 1");
     }
 
+    {
+        System.out.println("Block 3");
+    }
+
+    Test() {
+        System.out.println("This is constructor 4");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Main 2");
+        Test test = new Test();
+    }
 }
 
 class Box {
-    int height, width, length;
+    int height, breath, length;
 
-    int area() {
-        return this.height * this.length * this.width;
+    Box() {
     }
 
-    public Box(int height, int width, int length) {
+    Box(int height, int breath, int length) {
         this.height = height;
-        this.width = width;
+        this.breath = breath;
         this.length = length;
     }
 }
+
+
 
 
