@@ -8,8 +8,7 @@ public class Test {
     public static void main(String[] args) {
         Test test = new Test();
         int k = 1000;
-        System.out.println(i + "<-->" + test.j + "<-->" + k);
-        //System.out.printf("Values of i  %d, j %d, k %d", i, test.j, k);
+        System.out.printf("Values of i %d, j %d, k %d%n", i, test.j, k);
         changeValue(i);
         changeValue(test.j);
         changeValue(k);
