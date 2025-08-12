@@ -2,31 +2,29 @@ package testing;
 
 
 public class Test {
-    static int i = 1000;
-    int j = 1000;
 
     public static void main(String[] args) {
-        Test test = new Test();
-        int k = 1000;
-        System.out.printf("Values of i %d, j %d, k %d%n", i, test.j, k);
-        changeValue(i);
-        changeValue(test.j);
-        changeValue(k);
-        System.out.println(i + "<-->" + test.j + "<-->" + k);  //1000<-->1000<-->1000 no change in value
+        Person p = new Person();
+        p.name = "Amit";
+        System.out.println(p);     //Person{name='Amit'}
+        upgrade(p);
+        System.out.println(p);     //Person{name='Sachin'}  value changing
     }
 
-    static void changeValue(int i) {
-        i++;
-        System.out.println(i);  //1001
+    static void upgrade(Person per) {
+        per.name = "Sachin";
     }
 }
 
+class Person {
+    String name;
 
-class Box {
-    int height, breath, length;
-
-
+    @Override
+    public String toString() {
+        return "Person{" + "name='" + name + '\'' + '}';
+    }
 }
+
 
 
 
