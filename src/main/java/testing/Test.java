@@ -1,42 +1,71 @@
 package testing;
 
 
+import java.io.*;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.*;
+
+
+class Response<T> {
+
+    private T response;
+    private String code;
+    public T getResponse() {
+        return response;
+    }
+    public void setResponse(T response) {
+        this.response = response;
+    }
+    public String getCode() {
+        return code;
+    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+}
+
 public class Test {
-
     public static void main(String[] args) {
-        Box b = new Box(1,1,1);
-        changeValue(b.height);
-        System.out.println(b.height);
-        changeValue(b);
-        System.out.println(b.height);
-        changeObject(b);
-        System.out.println(b.height);
+        HashSet<Integer> hs = new HashSet<>();
+
 
     }
+}
 
-    static void changeValue(int i) {
-        i++;
-    }
+class Employee {
+    int salary;
+    int age;
 
-    static void changeValue(Box b) {
-        b.height++;
-    }
-
-    static void changeObject(Box b){
-        b = new Box(10,10,10);
+    public Employee(int salary, int age) {
+        super();
+        this.salary = salary;
+        this.age = age;
     }
 }
 
 
-class Box {
-    int height, breath, length;
 
-    public Box(int height, int breath, int length) {
-        this.height = height;
-        this.breath = breath;
-        this.length = length;
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
