@@ -17,23 +17,21 @@ class SeniorDev extends Developer {
 
 public class Test {
     public static void main(String[] args) {
-        List<Developer> list = new ArrayList<>();
+        List<Employee> list = new ArrayList<>();
+        list.add(new Employee());
         print(list);
-
-        List<SeniorDev> seniorDevs = new ArrayList<>();
-        print(seniorDevs);
-
-        List<Human> humans = new ArrayList<>();
-        //print(humans); will not compile as humans don't extend Employee
-
     }
 
-    static void print(List<? extends Employee> list) {
-        for (Employee employee : list) {
+    static void print(List<? super Developer> list){
+        for (Object employee:list){
             System.out.println(employee);
         }
     }
 }
+
+
+
+
 
 
 
