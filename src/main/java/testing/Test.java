@@ -1,33 +1,42 @@
 package testing;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.github.javafaker.Faker;
 
-class Human {
-}
-
-class Employee extends Human {
-}
-
-class Developer extends Employee {
-}
-
-class SeniorDev extends Developer {
-}
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.*;
 
 public class Test {
-    public static void main(String[] args) {
-        List<Employee> list = new ArrayList<>();
-        list.add(new Employee());
-        print(list);
-    }
 
-    static void print(List<? super Developer> list){
-        for (Object employee:list){
-            System.out.println(employee);
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Faker faker = new Faker();
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            list.add(faker.gameOfThrones().character());
+        }
+        ListIterator<String> iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());    // will print in forward directions
+        }
+        while (iterator.hasPrevious()) {             // will print in backward directions
+            System.out.println(iterator.previous());
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
