@@ -1,5 +1,8 @@
 package testing;
 
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+
 import java.util.*;
 
 public class Test {
@@ -23,25 +26,17 @@ class SalaryComparator implements Comparator<Employee> {
 }
 
 
+@AllArgsConstructor
+@ToString
 class Employee implements Comparable<Employee> {
     int salary;
     int age;
-
-    public Employee(int salary, int age) {
-        super();
-        this.salary = salary;
-        this.age = age;
-    }
 
     @Override
     public int compareTo(Employee arg0) {
         return this.age - arg0.age;
     }
 
-    @Override
-    public String toString() {
-        return "Employee [salary=" + salary + ", age=" + age + "]";
-    }
 }
 
 
