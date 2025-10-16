@@ -2,6 +2,8 @@ package com.saha.amit.basic;
 
 import com.github.javafaker.Faker;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +13,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StringBasic {
+    private static final Logger log = LoggerFactory.getLogger(StringBasic.class);
+
     static Faker faker = new Faker();
 
     public static void main(String[] args) {
@@ -19,62 +23,77 @@ public class StringBasic {
         reverseSimple(st);
         reverseUsingStream(st);
         countVowelsConsonants(st);
-
-
+        boolean b = isPalindrome("A man, a plan, a canal: Panama");
+        log.info("Is Palindrome --> {}", b);
     }
 
     /*
-    Not best of implementation but apart from space in result too many loops
+    Too many conversions (inefficient), verbose
      */
     public static void reverseUsingCollection(String st) {
-        System.out.println("Input --> " + st);
-        char[] ch = st.toCharArray();
-        List<Character> characterList = new ArrayList<>();
-        for (Character c : ch) {
-            characterList.add(c);
-        }
-        Collections.reverse(characterList);
-        String result = characterList.toString().replace(",", "");
-        System.out.println("Reversed --> " + result);
+        log.info("Input String --> {}", st);
+        List<Character> characters = st.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.toList());
+        Collections.reverse(characters);
+        StringBuilder result = new StringBuilder(characters.size());
+        characters.forEach(result::append);
+        log.info("Reversed String--> {}", result);
     }
 
     /*
-    Very simple loops
+    Very simple loops  low level code
      */
     public static void reverseSimple(String st) {
-        System.out.println("Input --> " + st);
+        log.info("input --> {}", st);
         char[] ch = st.toCharArray();
-        String result = "";
-        for (int i = (st.toCharArray().length - 1); i > 0; i--) {
-            result = result + ch[i];
+        StringBuilder result = new StringBuilder();
+        for (int i = st.length() - 1; i >= 0; i--) {
+            result.append(ch[i]);
         }
-        System.out.println("Reversed --> " + result);
+        log.info("reversed --> {}", result);
     }
 
     /*
-    Using stream Collection
+    Using stream Collection, Slightly slower due to autoboxing, stream overhead
+    Elegant, modern Java style
      */
     public static void reverseUsingStream(String st) {
-        System.out.println("Input --> " + st);
-        String result = "";
-        List<Character> characterList = new ArrayList<>();
-        characterList = st.chars()
-                .mapToObj(value -> (char) value)
-                .collect(Collectors.toList());
-        Collections.reverse(characterList);
-        System.out.println("Reversed --> " + characterList.toString());
+        log.info("Input --> {}", st);
+        String result = st.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        lst -> {
+                            Collections.reverse(lst);
+                            return lst.stream()
+                                    .map(String::valueOf)
+                                    .collect(Collectors.joining());
+                        }));
+        log.info("Reversed --> {}", result);
     }
 
-    public static void countVowelsConsonants(String st){
-        CharSequence [] vowels = {"a", "e", "i", "o", "u"};
-        int vowelCount = 0;
-        for (CharSequence c: vowels){
-            if (st.contains(c)){
-                vowelCount ++;
+    /*
+    Using String builder to reverse the string better than above methods
+    uses native java methods faster Internally optimized (native code).
+     */
+    public static boolean isPalindrome(String st) {
+        String cleaned = st.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        return cleaned.contentEquals(new StringBuilder(cleaned).reverse());
+    }
+
+
+    public static void countVowelsConsonants(String st) {
+        int vowels = 0, consonants = 0;
+        st = st.toLowerCase();
+        for (char ch : st.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                if ("aeiou".indexOf(ch) >= 0)
+                    vowels++;
+                else
+                    consonants++;
             }
         }
-        System.out.println("Vowel count "+ vowelCount+ " Consonants count "+ (st.length()-vowelCount));
+        log.info("Vowels: {}, Consonants: {}", vowels, consonants);
     }
-
-
 }

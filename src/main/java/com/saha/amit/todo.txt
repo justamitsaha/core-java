@@ -1,0 +1,81 @@
+🟢 Beginner Level (Syntax, Loops, Arrays, Strings)
+
+Focus: logic building, control flow, basic Java syntax.
+
+Reverse a String — Write a program to reverse a string without using built-in methods.
+
+Count Vowels and Consonants — Given a string, count vowels and consonants separately.
+
+Palindrome Check — Check if a string or number is a palindrome.
+
+Sum of Digits — Input a number, find the sum of its digits.
+
+Find Maximum in Array — Find the largest number in an integer array.
+
+Second Largest Element — Without sorting, find the second largest number in an array.
+
+Swap Two Numbers — Swap two variables without using a third variable.
+
+Factorial Using Loops — Calculate factorial of a number using iteration.
+
+Check Prime — Check if a number is prime.
+
+Fibonacci Series — Print first N Fibonacci numbers (iteratively and recursively).
+
+🟡 Intermediate Level (OOP, Collections, File Handling)
+
+Focus: object-oriented design, collections API, exceptions, streams.
+
+Employee Class — Create an Employee class with fields like id, name, salary and methods to display info.
+
+Bank Account Simulation — Create a BankAccount class with deposit and withdraw methods, ensuring no negative balance.
+
+Count Word Frequency — Given a sentence, count occurrences of each word using HashMap.
+
+Sort by Value — Sort a HashMap by its values (ascending order).
+
+Find Duplicates in List — Given a list of integers, find all duplicates using streams or collections.
+
+Remove Nulls from List — Given a list containing nulls, remove them safely.
+
+File Word Count — Read a text file and count how many times each word appears.
+
+Custom Exception — Create a custom exception for invalid age input (< 18).
+
+Reverse LinkedList — Reverse a LinkedList without using built-in reverse methods.
+
+Student Sorting — Create a Student class and sort students by name, then by grade using Comparator.
+
+🔵 Advanced Level (Streams, Concurrency, Design Patterns, Algorithms)
+
+Focus: modern Java, problem-solving, multi-threading.
+
+Find nth Highest Salary (Streams) — Given a list of employees, find the nth highest salary using streams.
+
+Group Employees by Department — Use streams and collectors to group employees.
+
+Deadlock Example — Write a small program that demonstrates a thread deadlock scenario.
+
+Producer-Consumer Problem — Implement using wait() and notify().
+
+Singleton Pattern — Implement a thread-safe singleton class.
+
+LRU Cache Implementation — Implement LRU cache using LinkedHashMap.
+
+Multithreaded Sum — Split an array into parts and sum elements in parallel using threads.
+
+Word Ladder Problem — Given a start and end word, find the shortest transformation using BFS.
+
+Merge Intervals — Given overlapping intervals, merge them efficiently.
+
+Stream Pipeline Challenge — Given a list of orders, compute total revenue per customer using streams and collectors.
+
+💡 Bonus Challenges
+
+If you finish the above:
+
+Build a Mini Library Management System (OOP + Collections + File IO).
+
+Build a CLI-based Banking System (handle accounts, transactions, logs).
+
+Simulate a Task Scheduler using threads and priority queue.
