@@ -12,7 +12,7 @@ Sum of Digits — Input a number, find the sum of its digits.
 
 Find Maximum in Array — Find the largest number in an integer array.
 
-Second Largest Element — Without sorting, find the second largest number in an array.
+Second-Largest Element — Without sorting, find the second-largest number in an array.
 
 Swap Two Numbers — Swap two variables without using a third variable.
 
