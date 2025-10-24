@@ -5,6 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Basic {
@@ -119,15 +124,74 @@ public class Basic {
     }
 
     public static long factorial(int input) {
-        long output = 1;
+        int result = 1;
         for (int i = 1; i <= input; i++) {
-            output *= i;
+            result *= i;
         }
-        log.info("Loop Factorial of: {} is : {} ", input, output);
-        output = Stream.iterate(1, i -> i + 1)
+        //return result;
+        return Stream.iterate(1, i -> i + 1)
                 .limit(input)
                 .reduce(1, (i, j) -> i * j);
-        return output;
+    }
+
+    public static boolean primeCheck(int input) {
+        if (input <= 1) return false;  // 0, 1 are not prime
+        for (int i = 2; i <= Math.sqrt(input); i++) {
+            if (input % i == 0) {
+                return false;
+            }
+        }
+        //return true;
+
+        if (input <= 1) return false;
+        return IntStream.rangeClosed(2, (int) Math.sqrt(input))
+                .noneMatch(i -> input % i == 0);
+    }
+
+
+    public static void fibonacciPrint(int limit) {
+        long first = 0, second = 1;
+        System.out.print("Fibonacci: " + first + " " + second);
+        for (int i = 2; i <= limit; i++) {
+            long next = first + second;
+            System.out.print(" " + next);
+            first = second;
+            second = next;
+        }
+        System.out.println();
+
+        Stream.iterate(new long[]{0, 1}, f -> new long[]{f[1], f[0] + f[1]})
+                .limit(limit + 1)
+                .mapToLong(f -> f[0])
+                .max()
+                .orElse(0);
+    }
+
+
+    public static Map<String, Integer> countWordFrequency(String str) {
+        log.info("Input: {}", str);
+
+        // Normalize input — lowercase and remove punctuation
+        str = str.toLowerCase().replaceAll("[^a-z\\s]", ""); // keep only letters and spaces
+
+        String[] words = str.split("\\s+"); // split by one or more spaces
+
+        Map<String, Integer> wordCount = new HashMap<>();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+            }
+        }
+
+        log.info("Word Frequency: {}", wordCount);
+        return wordCount;
+    }
+
+    public static Map<String, Long> countWordFrequencyStream(String str) {
+        return Arrays.stream(str.toLowerCase().replaceAll("[^a-z\\s]", "").split("\\s+"))
+                .filter(word -> !word.isEmpty())
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
 
