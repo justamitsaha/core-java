@@ -5,16 +5,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Basic {
     private static final Logger log = LoggerFactory.getLogger(Basic.class);
     private static final Faker faker = new Faker();
     static int[] integers = new int[4];
     static int input = 0;
+    static int smallInput = 0;
 
     static {
         log.info("Initializing");
         input = faker.number().numberBetween(999, 9999);
+        smallInput = faker.number().numberBetween(0, 25);
         for (int i = 0; i < integers.length; i++) {
             integers[i] = faker.number().numberBetween(999, 9999);
         }
@@ -26,6 +29,7 @@ public class Basic {
         log.info("array: {}, largest {}", integers, findLargest2(integers));
         log.info("array: {}, 2nd largest {}", integers, findSecondLargest(integers));
         swapWithoutTempVariable();
+        log.info("Factorial of: {} is: {} ", smallInput, factorial(smallInput));
     }
 
 
@@ -114,7 +118,17 @@ public class Basic {
         log.info("After Swap: a = {}, b = {}", a, b);
     }
 
-
+    public static long factorial(int input) {
+        long output = 1;
+        for (int i = 1; i <= input; i++) {
+            output *= i;
+        }
+        log.info("Loop Factorial of: {} is : {} ", input, output);
+        output = Stream.iterate(1, i -> i + 1)
+                .limit(input)
+                .reduce(1, (i, j) -> i * j);
+        return output;
+    }
 
 
 }

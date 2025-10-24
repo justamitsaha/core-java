@@ -32,7 +32,7 @@ Bank Account Simulation — Create a BankAccount class with deposit and withdraw
 
 Count Word Frequency — Given a sentence, count occurrences of each word using HashMap.
 
-Sort by Value — Sort a HashMap by its values (ascending order).
+    Sort by Value — Sort a HashMap by its values (ascending order).
 
 Find Duplicates in List — Given a list of integers, find all duplicates using streams or collections.
 
