@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class Basic {
-    private static final Logger log = LoggerFactory.getLogger(Basic.class);
+public class CommonProblemSolving {
+    private static final Logger log = LoggerFactory.getLogger(CommonProblemSolving.class);
     private static final Faker faker = new Faker();
     static int[] integers = new int[4];
     static int input = 0;
@@ -29,8 +29,8 @@ public class Basic {
     }
 
     public static void main(String[] args) {
-        log.info("Input: {}, Sum: {}", input, sumOfDigit(input));
-        log.info("array: {}, largest {}", integers, findLargest(integers));
+        log.info("Sum of all the digits of the Input: {} is : {}", input, sumOfDigit(input));
+        log.info("Largest element of this integer array: {}, is {}", integers, findLargest(integers));
         log.info("array: {}, largest {}", integers, findLargest2(integers));
         log.info("array: {}, 2nd largest {}", integers, findSecondLargest(integers));
         swapWithoutTempVariable();
@@ -40,12 +40,12 @@ public class Basic {
 
     public static int sumOfDigit(Integer number) {
         //Approach 1 using loop
-        int sum = 0;
-        while (number > 0) {
-            sum += number % 10;
-            number /= 10; //This is equivalent to a = a / b;
+        int sum = 0, temp = number;
+        while (temp > 0) {
+            sum += temp % 10;
+            temp /= 10; //This is equivalent to a = a / b;
         }
-        //log.info("Sum using basic loop {}",String.valueOf(sum));
+        log.info("Sum of the digits of number: {} using basic loop is : {}", number, sum);
 
         /*
         .mapToInt(value -> value) is commented because it does not convert characters to digits.
