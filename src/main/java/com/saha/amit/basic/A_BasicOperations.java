@@ -27,6 +27,28 @@ public class A_BasicOperations {
         logger.info("k += 4 equals: {} ", k += 4);
         logger.info("k -= 4 equals: {} ", k -= 4);
         logger.info("k /= 2 equals: {} ", k /= 2);
+
+        int i = 5;
+        int j = i++ + ++i;
+        System.out.println(j);
+        int a = 1;
+        a = a++ + a + ++a;
+        System.out.println(a);
+
+        int x = 10;
+        int y = (x = 5) + 2;
+        System.out.println(y + ", " + x);
+
+        int i = 0;
+        System.out.println(i = 3 * 5);
+        System.out.println(i);
+
+        int x = 0;
+        boolean b = (x > 0) && (++x > 0);
+        System.out.println(x);
+
+
+
     }
 
     public static void doubleValue(int i) {

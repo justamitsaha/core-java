@@ -4,16 +4,14 @@ import com.github.javafaker.Faker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class CommonProblemSolving {
-    private static final Logger log = LoggerFactory.getLogger(CommonProblemSolving.class);
+public class B_CommonProblemSolving {
+    private static final Logger log = LoggerFactory.getLogger(B_CommonProblemSolving.class);
     private static final Faker faker = new Faker();
     static int[] integers = new int[4];
     static int input = 0;
@@ -30,10 +28,11 @@ public class CommonProblemSolving {
 
     public static void main(String[] args) {
         log.info("Sum of all the digits of the Input: {} is : {}", input, sumOfDigit(input));
-        log.info("Largest element of this integer array: {}, is {}", integers, findLargest(integers));
-        log.info("array: {}, largest {}", integers, findLargest2(integers));
-        log.info("array: {}, 2nd largest {}", integers, findSecondLargest(integers));
+        log.info("Largest element of this integer array: {} using stream, is {}", integers, findLargestUsingStrem(integers));
+        log.info("Largest element of this integer array: {} using loops, is {}", integers, findLargestUsingLoop(integers));
+        log.info("2nd Largest element of this integer array: {} using loops, is {}", integers, findSecondLargest(integers));
         swapWithoutTempVariable();
+        fibonacciPrint(9);
         log.info("Factorial of: {} is: {} ", smallInput, factorial(smallInput));
     }
 
@@ -47,20 +46,14 @@ public class CommonProblemSolving {
         }
         log.info("Sum of the digits of number: {} using basic loop is : {}", number, sum);
 
-        /*
-        .mapToInt(value -> value) is commented because it does not convert characters to digits.
-        It simply keeps the Unicode / ASCII value of each character.
-        e.g. "123".chars().mapToInt(value -> value).forEach(System.out::println);  //will give 49, 50, 51
-         */
-        return number.toString().chars()
-                .mapToObj(operand -> (char) operand)
+        return number.toString()
+                .chars()
                 .map(Character::getNumericValue)
-                //.mapToInt(value -> value)
-                .reduce(0,
-                        Integer::sum);
+                //.sum();
+                .reduce(0, Integer::sum);
     }
 
-    public static int findLargest(int[] integer) {
+    public static int findLargestUsingStrem(int[] integer) {
         var result = Arrays.stream(integer)
                 .reduce((integer1, integer2) -> {
                     int largest = 0;
@@ -71,24 +64,23 @@ public class CommonProblemSolving {
                     }
                     return largest;
                 });
+        //or
+        result = Arrays.stream(integer).reduce(Math::max);
         //When no identity value is provided, the result is wrapped in an Optional to handle the case of an empty stream.
         return result.orElse(0);
+
     }
 
-    public static int findLargest2(int[] numbers) {
-        /*Pro -->Fastest (O(n)) Works for primitives and doesn’t box/unbox No extra memory Easy to understand
-        Con Verbose Must handle empty array manually*/
+    /*Pro -->Fastest (O(n)) Works for primitives and doesn’t box/unbox No extra memory Easy to understand
+    Con Verbose Must handle empty array manually*/
+    public static int findLargestUsingLoop(int[] numbers) {
         int max = numbers[0];
         for (int i = 1; i < numbers.length; i++) {
             if (numbers[i] > max) {
                 max = numbers[i];
             }
         }
-        //log.info("Largest using basic loop: {}", max);
-
-        //here 0 is identity value hence no optional is required
-        return Arrays.stream(numbers)
-                .reduce(0, Integer::max);
+        return max;
     }
 
     public static int findSecondLargest(int[] numbers) {
@@ -109,6 +101,14 @@ public class CommonProblemSolving {
                 secondLargest = number;
             }
         }
+        int temp = Arrays.stream(numbers)
+                .distinct()
+                .boxed()
+                .sorted(Comparator.reverseOrder())
+                .skip(1)
+                .findFirst()
+                .orElse(-1);
+        log.info(String.valueOf(temp));
         //log.info("Second Largest using basic loop: {}", secondLargest);
         return secondLargest;
     }
@@ -150,21 +150,33 @@ public class CommonProblemSolving {
 
 
     public static void fibonacciPrint(int limit) {
+        if (limit <= 0) {
+            log.info("Limit must be greater than 0");
+            return;
+        }
+
+        // ----- LOOP VERSION -----
         long first = 0, second = 1;
-        System.out.print("Fibonacci: " + first + " " + second);
-        for (int i = 2; i <= limit; i++) {
+        List<Long> list = new ArrayList<>();
+        list.add(first);
+        if (limit > 1) list.add(second);
+
+        for (int i = 2; i < limit; i++) {
             long next = first + second;
-            System.out.print(" " + next);
             first = second;
             second = next;
+            list.add(next);
         }
-        System.out.println();
 
-        Stream.iterate(new long[]{0, 1}, f -> new long[]{f[1], f[0] + f[1]})
-                .limit(limit + 1)
-                .mapToLong(f -> f[0])
-                .max()
-                .orElse(0);
+        log.info("Fibonacci (loop) {}", list);
+
+        // ----- STREAM VERSION -----
+        List<Long> streamList = Stream.iterate(new long[]{0, 1}, f -> new long[]{f[1], f[0] + f[1]})
+                .limit(limit)
+                .map(f -> f[0])
+                .collect(Collectors.toList());
+
+        log.info("Fibonacci (stream) {}", streamList);
     }
 
 
