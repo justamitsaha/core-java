@@ -1,5 +1,6 @@
 package com.saha.amit.basic;
 
+import com.github.javafaker.Faker;
 import com.saha.amit.dto.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 public class A_BasicOperations {
 
     private static final Logger logger = LoggerFactory.getLogger(A_BasicOperations.class);
+    public static final Faker faker = new Faker();
 
     public static void main(String[] args) {
         // Only i initialized not j also can use un-initialized local variables Class level variables get default values
@@ -39,9 +41,42 @@ public class A_BasicOperations {
         logger.info("value of i after i = 3 * 5 is {}", i = 3 * 5);
         logger.info("i = {}", i);
 
+        /*
+        The first condition (x > 0) is false,
+        so the second (++x > 0) never executes because of short-circuit AND (&&).
+         */
         x = 0;
         boolean b = (x > 0) && (++x > 0);
-        logger.info(String.valueOf(x));
+        logger.info("x = {}", x);
+        y = 0;
+        boolean b2 = (y > 0) & (++y > 0);
+        logger.info("y = {}", y);
+
+        // Automatic casting happening and changes the return type
+        logger.info("Ternary operation {}", faker.bool().bool() ? 1 : "hello");
+        logger.info("Ternary operation {}", faker.bool().bool() ? 1 : 1.5);
+
+        /*a = 31536000000; won't compile as it is out of range
+        but for expression with value greater than range int overflow happens silently —result wraps around.*/
+        a = Integer.MAX_VALUE + Integer.MAX_VALUE;
+        logger.info("a, {}", a);
+
+        byte b3 = 10;
+        //cast needed as Because all arithmetic promotes operands to int.
+        b3 = (byte) (b3 * 2);
+
+        //✅ true — int promoted to double
+        logger.info("10 == 10.0 does auto casting {}", 10 == 10.0);
+
+        //Cashing
+        Integer o = 128, p = 128;
+        logger.info("o==p {}", (o == p));
+        o = 127;
+        p = 127;
+        logger.info("o==p {}", (o == p));
+        o = p = 128;
+        logger.info("o==p {}", (o == p));
+
     }
 
     public static void callByValue() {
