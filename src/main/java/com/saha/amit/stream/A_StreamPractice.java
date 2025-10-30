@@ -1,5 +1,6 @@
 package com.saha.amit.stream;
 
+import com.github.javafaker.Faker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +24,20 @@ import java.util.stream.Stream;
  */
 
 public class A_StreamPractice {
+    static List<Employee> employees = new ArrayList<>();
+
+    record Employee(String name, String dept, double salary) {
+    }
 
     private final static Logger log = LoggerFactory.getLogger(A_StreamPractice.class);
+    static {
+        Faker faker = new Faker();
+        for (int i = 0; i < 15; i++) {
+            employees.add(new Employee(faker.funnyName().name(), faker.demographic().race(),
+                    faker.number().randomDouble(2, 10000, 100000)));
+        }
+        log.info("Employees: {}", employees);
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -187,16 +200,7 @@ public class A_StreamPractice {
     }
 
     // Create a few Employee records for later use
-    static List<Employee> employees = List.of(
-            new Employee("Amit", "IT", 80000),
-            new Employee("Rahul", "HR", 60000),
-            new Employee("Sneha", "IT", 90000),
-            new Employee("Priya", "Finance", 75000),
-            new Employee("Ravi", "HR", 65000)
-    );
 
-    record Employee(String name, String dept, double salary) {
-    }
 
     // 11️⃣ Map from objects
     public static void getEmployeeNames() {
@@ -209,7 +213,7 @@ public class A_StreamPractice {
     // 12️⃣ Filter by field
     public static void findEmployeesInDept() {
         List<Employee> itEmployees = employees.stream()
-                .filter(e -> e.dept().equals("IT"))
+                .filter(e -> e.dept().equals("Legal"))
                 .toList();
         log.info("IT Employees: {}", itEmployees);
     }
