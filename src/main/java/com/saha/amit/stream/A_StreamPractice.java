@@ -1,5 +1,8 @@
 package com.saha.amit.stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -19,41 +22,41 @@ import java.util.stream.Stream;
  * - flatMap, sorting, distinct, etc.
  */
 
-public class StreamPractice {
+public class A_StreamPractice {
+
+    private final static Logger log = LoggerFactory.getLogger(A_StreamPractice.class);
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        log.info("\n========= Stream Practice Menu =========");
         while (true) {
-            System.out.println("\n========= Stream Practice Menu =========");
-            System.out.println("1. Filter and Map Example");
-            System.out.println("2. Square Numbers");
-            System.out.println("3. Names Starting with A");
-            System.out.println("4. Convert to Uppercase");
-            System.out.println("5. Count Numbers Greater Than 10");
-            System.out.println("6. Remove Duplicates and Sort");
-            System.out.println("7. Top 3 Highest Numbers");
-            System.out.println("8. Skip and Sum");
-            System.out.println("9. Find Max with Reduce");
-            System.out.println("10. Product of Elements");
-            System.out.println("11. Get Employee Names");
-            System.out.println("12. Find Employees in Department");
-            System.out.println("13. Find Employee with Highest Salary");
-            System.out.println("14. Average Salary in Department");
-            System.out.println("15. Group Employees by Department");
-            System.out.println("16. Total Salary per Department");
-            System.out.println("17. Word Frequency Counter");
-            System.out.println("18. Flatten Nested List");
-            System.out.println("19. Unique Characters from Words");
-            System.out.println("20. Partition Even and Odd Numbers");
-            System.out.println("21. Find Second Highest Salary");
-            System.out.println("22. Common Elements Between Lists");
-            System.out.println("23. Fibonacci Using Stream");
-            System.out.println("24. Palindrome Words");
-            System.out.println("25. Sort Map by Value Descending");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
-
+            log.info("1. Filter and Map Example");
+            log.info("2. Square Numbers");
+            log.info("3. Names Starting with A");
+            log.info("4. Convert to Uppercase");
+            log.info("5. Count Numbers Greater Than 10");
+            log.info("6. Remove Duplicates and Sort");
+            log.info("7. Top 3 Highest Numbers");
+            log.info("8. Skip and Sum");
+            log.info("9. Find Max with Reduce");
+            log.info("10. Product of Elements");
+            log.info("11. Get Employee Names");
+            log.info("12. Find Employees in Department");
+            log.info("13. Find Employee with Highest Salary");
+            log.info("14. Average Salary in Department");
+            log.info("15. Group Employees by Department");
+            log.info("16. Total Salary per Department");
+            log.info("17. Word Frequency Counter");
+            log.info("18. Flatten Nested List");
+            log.info("19. Unique Characters from Words");
+            log.info("20. Partition Even and Odd Numbers");
+            log.info("21. Find Second Highest Salary");
+            log.info("22. Common Elements Between Lists");
+            log.info("23. Fibonacci Using Stream");
+            log.info("24. Palindrome Words");
+            log.info("25. Sort Map by Value Descending");
+            log.info("0. Exit");
+            log.info("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -84,10 +87,10 @@ public class StreamPractice {
                 case 24 -> palindromeWords();
                 case 25 -> sortMapByValueDescending();
                 case 0 -> {
-                    System.out.println("Goodbye 👋");
+                    log.info("Goodbye 👋");
                     return;
                 }
-                default -> System.out.println("Invalid choice! Try again.");
+                default -> log.info("Invalid choice! Try again.");
             }
         }
     }
@@ -98,7 +101,7 @@ public class StreamPractice {
         List<Integer> evens = numbers.stream()
                 .filter(n -> n % 2 == 0)
                 .collect(Collectors.toList());
-        System.out.println("Even numbers: " + evens);
+        log.info("Even numbers: {}", evens);
     }
 
     // 2️⃣ Map
@@ -106,8 +109,8 @@ public class StreamPractice {
         List<Integer> numbers = List.of(2, 3, 4, 5);
         List<Integer> squares = numbers.stream()
                 .map(n -> n * n)
-                .collect(Collectors.toList());
-        System.out.println("Squares: " + squares);
+                .toList();
+        log.info("Squares: {}", squares);
     }
 
     // 3️⃣ Filter with Strings
@@ -115,8 +118,8 @@ public class StreamPractice {
         List<String> names = List.of("Amit", "Rahul", "Ankit", "Ravi");
         List<String> result = names.stream()
                 .filter(n -> n.startsWith("A"))
-                .collect(Collectors.toList());
-        System.out.println("Names starting with A: " + result);
+                .toList();
+        log.info("Names starting with A: {}", result);
     }
 
     // 4️⃣ Map with method reference
@@ -124,8 +127,8 @@ public class StreamPractice {
         List<String> names = List.of("amit", "rahul", "ankit");
         List<String> upper = names.stream()
                 .map(String::toUpperCase)
-                .collect(Collectors.toList());
-        System.out.println("Uppercase: " + upper);
+                .toList();
+        log.info("Uppercase: {}", upper);
     }
 
     // 5️⃣ Count
@@ -134,7 +137,7 @@ public class StreamPractice {
         long count = numbers.stream()
                 .filter(n -> n > 10)
                 .count();
-        System.out.println("Numbers > 10: " + count);
+        log.info("Numbers > 10: {}", count);
     }
 
     // 6️⃣ Distinct + Sorted
@@ -143,8 +146,8 @@ public class StreamPractice {
         List<Integer> sorted = numbers.stream()
                 .distinct()
                 .sorted()
-                .collect(Collectors.toList());
-        System.out.println("Distinct + Sorted: " + sorted);
+                .toList();
+        log.info("Distinct + Sorted: {}", sorted);
     }
 
     // 7️⃣ Limit
@@ -153,8 +156,8 @@ public class StreamPractice {
         List<Integer> top3 = numbers.stream()
                 .sorted(Comparator.reverseOrder())
                 .limit(3)
-                .collect(Collectors.toList());
-        System.out.println("Top 3 numbers: " + top3);
+                .toList();
+        log.info("Top 3 numbers: {}", top3);
     }
 
     // 8️⃣ Skip
@@ -162,7 +165,7 @@ public class StreamPractice {
         int sum = IntStream.rangeClosed(1, 10)
                 .skip(5)
                 .sum();
-        System.out.println("Sum after skipping first 5: " + sum);
+        log.info("Sum after skipping first 5: {}", sum);
     }
 
     // 9️⃣ Reduce (max)
@@ -171,7 +174,7 @@ public class StreamPractice {
         int max = numbers.stream()
                 .reduce(Integer::max)
                 .orElse(-1);
-        System.out.println("Max value: " + max);
+        log.info("Max value: {}", max);
     }
 
     // 🔟 Reduce (product)
@@ -179,7 +182,7 @@ public class StreamPractice {
         List<Integer> numbers = List.of(2, 3, 4);
         int product = numbers.stream()
                 .reduce(1, (a, b) -> a * b);
-        System.out.println("Product: " + product);
+        log.info("Product: {}", product);
     }
 
     // Create a few Employee records for later use
@@ -198,16 +201,16 @@ public class StreamPractice {
     public static void getEmployeeNames() {
         List<String> names = employees.stream()
                 .map(Employee::name)
-                .collect(Collectors.toList());
-        System.out.println("Employee names: " + names);
+                .toList();
+        log.info("Employee names: {}", names);
     }
 
     // 12️⃣ Filter by field
     public static void findEmployeesInDept() {
         List<Employee> itEmployees = employees.stream()
                 .filter(e -> e.dept().equals("IT"))
-                .collect(Collectors.toList());
-        System.out.println("IT Employees: " + itEmployees);
+                .toList();
+        log.info("IT Employees: {}", itEmployees);
     }
 
     // 13️⃣ Max comparator
@@ -215,7 +218,7 @@ public class StreamPractice {
         Employee max = employees.stream()
                 .max(Comparator.comparing(Employee::salary))
                 .orElse(null);
-        System.out.println("Highest Salary: " + max);
+        log.info("Highest Salary: {}", max);
     }
 
     // 14️⃣ Average
@@ -225,14 +228,14 @@ public class StreamPractice {
                 .mapToDouble(Employee::salary)
                 .average()
                 .orElse(0);
-        System.out.println("Average HR Salary: " + avg);
+        log.info("Average HR Salary: {}", avg);
     }
 
     // 15️⃣ Grouping
     public static void groupByDepartment() {
         Map<String, List<Employee>> grouped = employees.stream()
                 .collect(Collectors.groupingBy(Employee::dept));
-        System.out.println("Grouped by dept: " + grouped);
+        log.info("Grouped by dept: {}", grouped);
     }
 
     // 16️⃣ Summing by group
@@ -240,7 +243,7 @@ public class StreamPractice {
         Map<String, Double> totals = employees.stream()
                 .collect(Collectors.groupingBy(Employee::dept,
                         Collectors.summingDouble(Employee::salary)));
-        System.out.println("Total salary per dept: " + totals);
+        log.info("Total salary per dept: {}", totals);
     }
 
     // 17️⃣ Word frequency
@@ -248,7 +251,7 @@ public class StreamPractice {
         String text = "Java Stream API makes Java powerful and fun";
         Map<String, Long> freq = Arrays.stream(text.toLowerCase().split("\\s+"))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        System.out.println("Word frequency: " + freq);
+        log.info("Word frequency: {}", freq);
     }
 
     // 18️⃣ FlatMap
@@ -259,7 +262,7 @@ public class StreamPractice {
         List<Integer> flat = listOfLists.stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
-        System.out.println("Flattened list: " + flat);
+        log.info("Flattened list: {}", flat);
     }
 
     // 19️⃣ Unique characters
@@ -268,8 +271,8 @@ public class StreamPractice {
         List<Character> chars = words.stream()
                 .flatMap(w -> w.chars().mapToObj(c -> (char) c))
                 .distinct()
-                .collect(Collectors.toList());
-        System.out.println("Unique characters: " + chars);
+                .toList();
+        log.info("Unique characters: {}", chars);
     }
 
     // 20️⃣ Partitioning
@@ -277,17 +280,17 @@ public class StreamPractice {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Map<Boolean, List<Integer>> partitioned = numbers.stream()
                 .collect(Collectors.partitioningBy(n -> n % 2 == 0));
-        System.out.println("Partitioned: " + partitioned);
+        log.info("Partitioned: {}", partitioned);
     }
 
-    // 21️⃣ Second highest salary
+    // 21️⃣ Second-highest salary
     public static void secondHighestSalary() {
         Optional<Double> second = employees.stream()
                 .map(Employee::salary)
                 .sorted(Comparator.reverseOrder())
                 .skip(1)
                 .findFirst();
-        System.out.println("Second highest salary: " + second.orElse(0.0));
+        log.info("Second highest salary: {}", second.orElse(0.0));
     }
 
     // 22️⃣ Common elements
@@ -296,8 +299,8 @@ public class StreamPractice {
         List<Integer> list2 = List.of(4, 5, 6, 7);
         List<Integer> common = list1.stream()
                 .filter(list2::contains)
-                .collect(Collectors.toList());
-        System.out.println("Common elements: " + common);
+                .toList();
+        log.info("Common elements: {}", common);
     }
 
     // 23️⃣ Fibonacci with streams
@@ -305,8 +308,8 @@ public class StreamPractice {
         List<Long> fib = Stream.iterate(new long[]{0, 1}, f -> new long[]{f[1], f[0] + f[1]})
                 .limit(10)
                 .map(f -> f[0])
-                .collect(Collectors.toList());
-        System.out.println("Fibonacci series: " + fib);
+                .toList();
+        log.info("Fibonacci series: {}", fib);
     }
 
     // 24️⃣ Palindrome words
@@ -314,8 +317,8 @@ public class StreamPractice {
         String text = "madam level radar hello world";
         List<String> palindromes = Arrays.stream(text.split(" "))
                 .filter(s -> new StringBuilder(s).reverse().toString().equalsIgnoreCase(s))
-                .collect(Collectors.toList());
-        System.out.println("Palindromes: " + palindromes);
+                .toList();
+        log.info("Palindromes: {}", palindromes);
     }
 
     // 25️⃣ Sort map by value descending
@@ -330,6 +333,6 @@ public class StreamPractice {
                                 (e1, e2) -> e1,
                                 LinkedHashMap::new
                         ));
-        System.out.println("Sorted by value: " + sorted);
+        log.info("Sorted by value: {}", sorted);
     }
 }

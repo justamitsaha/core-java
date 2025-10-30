@@ -1,6 +1,5 @@
-.mapToInt(value -> value) is commented because it does not convert characters to digits.
-        It simply keeps the Unicode / ASCII value of each character.
-        e.g. "123".chars().mapToInt(value -> value).forEach(System.out::println);  //will give 49, 50, 51
+                .distinct()
+                .sorted()
 🟢 Beginner Level (Syntax, Loops, Arrays, Strings)
 
 Focus: logic building, control flow, basic Java syntax.
