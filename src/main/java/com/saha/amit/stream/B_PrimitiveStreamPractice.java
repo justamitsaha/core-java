@@ -1,42 +1,47 @@
 package com.saha.amit.stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 import java.util.stream.*;
 
     /**
      * Primitive Stream Practice Workbook
      * Author: Amit Saha
-     *
      * Covers:
      *  - IntStream, LongStream, DoubleStream
      *  - Boxing & Unboxing
      *  - Conversion between primitive and object streams
      *  - Range, sum, reduce, average, summaryStatistics
      */
-    public class PrimitiveStreamPractice {
+    public class B_PrimitiveStreamPractice {
+
+        private static final Logger log = LoggerFactory.getLogger(B_PrimitiveStreamPractice.class);
 
         public static void main(String[] args) {
             Scanner sc = new Scanner(System.in);
 
             while (true) {
-                System.out.println("\n========= Primitive Stream Practice Menu =========");
-                System.out.println("1. IntStream Basics");
-                System.out.println("2. IntStream Sum and Average");
-                System.out.println("3. IntStream Filter and Map");
-                System.out.println("4. Range vs RangeClosed");
-                System.out.println("5. Boxing Example");
-                System.out.println("6. Unboxing Example (List to IntStream)");
-                System.out.println("7. Factorial Using LongStream");
-                System.out.println("8. LongStream to DoubleStream");
-                System.out.println("9. DoubleStream Statistics");
-                System.out.println("10. Generate Random Doubles");
-                System.out.println("11. Find Max and Min");
-                System.out.println("12. Reduce - Product Example");
-                System.out.println("13. Type Conversion Examples");
-                System.out.println("14. Combined Employee Example");
-                System.out.println("15. IntStream Summary Statistics");
-                System.out.println("0. Exit");
-                System.out.print("Enter your choice: ");
+                /* Uncomment to see options
+                log.info("\n========= Primitive Stream Practice Menu =========");
+                log.info("1. IntStream Basics");
+                log.info("2. IntStream Sum and Average");
+                log.info("3. IntStream Filter and Map");
+                log.info("4. Range vs RangeClosed");
+                log.info("5. Boxing Example");
+                log.info("6. Unboxing Example (List to IntStream)");
+                log.info("7. Factorial Using LongStream");
+                log.info("8. LongStream to DoubleStream");
+                log.info("9. DoubleStream Statistics");
+                log.info("10. Generate Random Doubles");
+                log.info("11. Find Max and Min");
+                log.info("12. Reduce - Product Example");
+                log.info("13. Type Conversion Examples");
+                log.info("14. Combined Employee Example");
+                log.info("15. IntStream Summary Statistics");
+                log.info("0. Exit");*/
+                log.info("Enter your choice: ");
 
                 int choice = sc.nextInt();
 
@@ -57,10 +62,10 @@ import java.util.stream.*;
                     case 14 -> combinedEmployeeExample();
                     case 15 -> intStreamSummary();
                     case 0 -> {
-                        System.out.println("Goodbye 👋");
+                        log.info("Goodbye 👋");
                         return;
                     }
-                    default -> System.out.println("Invalid choice! Try again.");
+                    default -> log.info("Invalid choice! Try again.");
                 }
             }
         }
@@ -75,7 +80,7 @@ import java.util.stream.*;
     public static void intStreamSumAndAverage() {
         int sum = IntStream.rangeClosed(1, 10).sum();
         double avg = IntStream.rangeClosed(1, 10).average().orElse(0);
-        System.out.println("Sum = " + sum + ", Avg = " + avg);
+        log.info("Sum = {}, Avg = {}", sum, avg);
         // Output: Sum = 55, Avg = 5.5
     }
 
@@ -90,9 +95,9 @@ import java.util.stream.*;
 
     // 4️⃣ Range vs RangeClosed
     public static void intStreamRangeVsRangeClosed() {
-        System.out.println("Range(1,5):");
+        log.info("Range(1,5):");
         IntStream.range(1, 5).forEach(System.out::print);  // 1234
-        System.out.println("\nRangeClosed(1,5):");
+        log.info("\nRangeClosed(1,5):");
         IntStream.rangeClosed(1, 5).forEach(System.out::print);  // 12345
     }
 
@@ -100,8 +105,8 @@ import java.util.stream.*;
     public static void intStreamBoxingExample() {
         List<Integer> boxed = IntStream.rangeClosed(1, 5)
                 .boxed()
-                .collect(Collectors.toList());
-        System.out.println("Boxed list: " + boxed);
+                .toList();
+        log.info("Boxed list: {}", boxed);
         // Output: [1, 2, 3, 4, 5]
     }
 
@@ -111,7 +116,7 @@ import java.util.stream.*;
         int sum = list.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
-        System.out.println("Sum from list = " + sum);
+        log.info("Sum from list = {}", sum);
         // Output: 100
     }
 
@@ -120,7 +125,7 @@ import java.util.stream.*;
         int n = 5;
         long fact = LongStream.rangeClosed(1, n)
                 .reduce(1, (a, b) -> a * b);
-        System.out.println("Factorial(" + n + ") = " + fact);
+        log.info("Factorial({}) = {}", n, fact);
         // Output: 120
     }
 
@@ -136,7 +141,7 @@ import java.util.stream.*;
     public static void doubleStreamStatsExample() {
         DoubleSummaryStatistics stats = DoubleStream.of(2.5, 3.7, 4.1, 1.9)
                 .summaryStatistics();
-        System.out.println(stats);
+        log.info(String.valueOf(stats));
         // Output: count=4, sum=12.2, min=1.9, average=3.05, max=4.1
     }
 
@@ -152,14 +157,14 @@ import java.util.stream.*;
         IntStream stream = IntStream.of(5, 10, 2, 15, 8);
         int max = stream.max().orElse(-1);
         int min = IntStream.of(5, 10, 2, 15, 8).min().orElse(-1);
-        System.out.println("Max = " + max + ", Min = " + min);
+        log.info("Max = {}, Min = {}", max, min);
     }
 
     // 12️⃣ Reduce: product of elements
     public static void reduceProductExample() {
         int product = IntStream.rangeClosed(1, 5)
                 .reduce(1, (a, b) -> a * b);
-        System.out.println("Product of 1..5 = " + product);
+        log.info("Product of 1..5 = {}", product);
         // Output: 120
     }
 
@@ -176,8 +181,8 @@ import java.util.stream.*;
         // DoubleStream → boxed Stream<Double>
         List<Double> boxed = DoubleStream.of(1.1, 2.2, 3.3)
                 .boxed()
-                .collect(Collectors.toList());
-        System.out.println("Boxed Double List: " + boxed);
+                .toList();
+        log.info("Boxed Double List: {}", boxed);
     }
 
     // 14️⃣ Combined real-world: sum of salaries using mapToDouble
@@ -192,7 +197,7 @@ import java.util.stream.*;
         double total = employees.stream()
                 .mapToDouble(Employee::salary)
                 .sum();
-        System.out.println("Total Salary = " + total);
+        log.info("Total Salary = {}", total);
         // Output: 245000.0
     }
 
@@ -200,7 +205,7 @@ import java.util.stream.*;
     public static void intStreamSummary() {
         IntSummaryStatistics stats = IntStream.rangeClosed(1, 10)
                 .summaryStatistics();
-        System.out.println(stats);
+        log.info(String.valueOf(stats));
         // Output: count=10, sum=55, min=1, average=5.5, max=10
     }
 }

@@ -30,6 +30,7 @@ public class A_StreamPractice {
         Scanner scanner = new Scanner(System.in);
         log.info("\n========= Stream Practice Menu =========");
         while (true) {
+            /* Uncomment to see options
             log.info("1. Filter and Map Example");
             log.info("2. Square Numbers");
             log.info("3. Names Starting with A");
@@ -55,7 +56,7 @@ public class A_StreamPractice {
             log.info("23. Fibonacci Using Stream");
             log.info("24. Palindrome Words");
             log.info("25. Sort Map by Value Descending");
-            log.info("0. Exit");
+            log.info("0. Exit");*/
             log.info("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();

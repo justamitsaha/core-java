@@ -1,14 +1,15 @@
 package com.saha.amit.stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 import java.util.concurrent.ForkJoinPool;
-import java.util.function.Function;
 import java.util.stream.*;
 
 /**
  * Advanced Stream Practice Workbook
  * Author: Amit Saha
- *
  * Topics:
  *  - Parallel Streams
  *  - Collectors (groupingBy, partitioningBy, mapping)
@@ -17,25 +18,28 @@ import java.util.stream.*;
  *  - Advanced transformations
  */
 
-public class AdvancedStreamPractice {
+public class C_AdvancedStreamPractice {
+    
+    private static final Logger log = LoggerFactory.getLogger(C_AdvancedStreamPractice.class);
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\n========= Java Stream Practice Menu =========");
-            System.out.println("1. Parallel Stream Basics");
-            System.out.println("2. Compare Sequential vs Parallel Performance");
-            System.out.println("3. Group Employees by Department");
-            System.out.println("4. Partition Numbers into Even/Odd");
-            System.out.println("5. Nested List Flattening");
-            System.out.println("6. Custom Collector: Join Strings");
-            System.out.println("7. Mapping Collector Example");
-            System.out.println("8. Summing and Averaging with Collectors");
-            System.out.println("9. Custom Thread Count in Parallel Stream");
-            System.out.println("10. Stream Peek and Debug Example");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
+            /* Uncomment to see options
+            log.info("\n========= Java Stream Practice Menu =========");
+            log.info("1. Parallel Stream Basics");
+            log.info("2. Compare Sequential vs Parallel Performance");
+            log.info("3. Group Employees by Department");
+            log.info("4. Partition Numbers into Even/Odd");
+            log.info("5. Nested List Flattening");
+            log.info("6. Custom Collector: Join Strings");
+            log.info("7. Mapping Collector Example");
+            log.info("8. Summing and Averaging with Collectors");
+            log.info("9. Custom Thread Count in Parallel Stream");
+            log.info("10. Stream Peek and Debug Example");
+            log.info("0. Exit");*/
+            log.info("Enter your choice: ");
 
             int choice = scanner.nextInt();
             switch (choice) {
@@ -50,10 +54,10 @@ public class AdvancedStreamPractice {
                 case 9 -> customThreadCountParallel();
                 case 10 -> peekDebugExample();
                 case 0 -> {
-                    System.out.println("Goodbye 👋");
+                    log.info("Goodbye 👋");
                     return;
                 }
-                default -> System.out.println("Invalid choice! Try again.");
+                default -> log.info("Invalid choice! Try again.");
             }
         }
     }
@@ -72,18 +76,18 @@ public class AdvancedStreamPractice {
 
     // 1️⃣ Parallel Stream Basics
     public static void parallelStreamBasics() {
-        System.out.println("\n-- Parallel Stream Example --");
+        log.info("\n-- Parallel Stream Example --");
         List<Integer> numbers = IntStream.rangeClosed(1, 10).boxed().toList();
 
         numbers.parallelStream()
                 .forEach(n ->
-                        System.out.println(Thread.currentThread().getName() + " processed " + n)
+                        log.info("{} processed {}", Thread.currentThread().getName(), n)
                 );
     }
 
     // 2️⃣ Compare Sequential vs Parallel
     public static void compareSequentialVsParallel() {
-        System.out.println("\n-- Performance Comparison --");
+        log.info("\n-- Performance Comparison --");
 
         List<Integer> numbers = IntStream.rangeClosed(1, 100_000_00).boxed().toList();
 
@@ -95,31 +99,31 @@ public class AdvancedStreamPractice {
         long sum2 = numbers.parallelStream().mapToLong(Integer::longValue).sum();
         long timePar = System.currentTimeMillis() - startPar;
 
-        System.out.println("Sequential sum time: " + timeSeq + " ms");
-        System.out.println("Parallel sum time:   " + timePar + " ms");
+        log.info("Sequential sum time: {} ms", timeSeq);
+        log.info("Parallel sum time:   {} ms", timePar);
     }
 
     // 3️⃣ Group by Department
     public static void groupByDepartment() {
-        System.out.println("\n-- Group Employees by Department --");
+        log.info("\n-- Group Employees by Department --");
         Map<String, List<Employee>> grouped = employees.stream()
                 .collect(Collectors.groupingBy(Employee::dept));
         grouped.forEach((dept, list) ->
-                System.out.println(dept + " -> " + list.stream().map(Employee::name).toList()));
+                log.info("{} -> {}", dept, list.stream().map(Employee::name).toList()));
     }
 
     // 4️⃣ Partitioning
     public static void partitionEvenOdd() {
-        System.out.println("\n-- Partition Numbers into Even/Odd --");
+        log.info("\n-- Partition Numbers into Even/Odd --");
         List<Integer> numbers = IntStream.rangeClosed(1, 10).boxed().toList();
         Map<Boolean, List<Integer>> result = numbers.stream()
                 .collect(Collectors.partitioningBy(n -> n % 2 == 0));
-        System.out.println(result);
+        log.info(result.toString());
     }
 
     // 5️⃣ Flatten Nested List (flatMap)
     public static void flattenNestedList() {
-        System.out.println("\n-- Flatten Nested Lists --");
+        log.info("\n-- Flatten Nested Lists --");
         List<List<String>> nested = List.of(
                 List.of("Java", "Spring"),
                 List.of("Docker", "Kubernetes"),
@@ -128,12 +132,12 @@ public class AdvancedStreamPractice {
         List<String> flat = nested.stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
-        System.out.println("Flattened: " + flat);
+        log.info("Flattened: {}", flat);
     }
 
     // 6️⃣ Custom Collector - Join Strings manually
     public static void customCollectorJoinStrings() {
-        System.out.println("\n-- Custom Collector Example (Join Strings) --");
+        log.info("\n-- Custom Collector Example (Join Strings) --");
         List<String> words = List.of("Java", "Stream", "API", "Rocks");
 
         String result = words.stream().collect(
@@ -142,35 +146,34 @@ public class AdvancedStreamPractice {
                 StringBuilder::append
         ).toString().trim();
 
-        System.out.println("Joined String: " + result);
+        log.info("Joined String: {}", result);
     }
 
     // 7️⃣ Mapping Collector
     public static void mappingCollectorExample() {
-        System.out.println("\n-- Mapping Collector Example --");
+        log.info("\n-- Mapping Collector Example --");
         Map<String, List<Double>> salariesByDept = employees.stream()
                 .collect(Collectors.groupingBy(
                         Employee::dept,
                         Collectors.mapping(Employee::salary, Collectors.toList())
                 ));
-        System.out.println("Salaries by Dept: " + salariesByDept);
+        log.info("Salaries by Dept: {}", salariesByDept);
     }
 
     // 8️⃣ Summing and Averaging
     public static void summingAndAveragingCollectors() {
-        System.out.println("\n-- Summing and Averaging Collectors --");
-        double total = employees.stream()
-                .collect(Collectors.summingDouble(Employee::salary));
+        log.info("\n-- Summing and Averaging Collectors --");
+        double total = employees.stream().mapToDouble(Employee::salary).sum();
         double avg = employees.stream()
                 .collect(Collectors.averagingDouble(Employee::salary));
 
-        System.out.println("Total Salary = " + total);
-        System.out.println("Average Salary = " + avg);
+        log.info("Total Salary = {}", total);
+        log.info("Average Salary = {}", avg);
     }
 
     // 9️⃣ Custom Thread Count with Parallel Stream
     public static void customThreadCountParallel() {
-        System.out.println("\n-- Custom Thread Count Parallel Stream --");
+        log.info("\n-- Custom Thread Count Parallel Stream --");
 
         ForkJoinPool customPool = new ForkJoinPool(3);
         try {
@@ -178,11 +181,11 @@ public class AdvancedStreamPractice {
                 IntStream.rangeClosed(1, 10)
                         .parallel()
                         .forEach(i ->
-                                System.out.println(Thread.currentThread().getName() + " -> " + i)
+                                log.info("{} -> {}", Thread.currentThread().getName(), i)
                         );
             }).get();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error: {}", e.getMessage());
         } finally {
             customPool.shutdown();
         }
@@ -190,17 +193,17 @@ public class AdvancedStreamPractice {
 
     // 🔟 Peek for Debugging
     public static void peekDebugExample() {
-        System.out.println("\n-- Stream Peek for Debugging --");
+        log.info("\n-- Stream Peek for Debugging --");
         List<String> words = List.of("java", "stream", "debug", "peek");
 
         List<String> result = words.stream()
-                .peek(w -> System.out.println("Before map: " + w))
+                .peek(w -> log.info("Before map: {}", w))
                 .map(String::toUpperCase)
-                .peek(w -> System.out.println("After map: " + w))
+                .peek(w -> log.info("After map: {}", w))
                 .filter(w -> w.length() > 4)
                 .toList();
 
-        System.out.println("Final result: " + result);
+        log.info("Final result: {}", result);
     }
 }
 
