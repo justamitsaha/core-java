@@ -41,7 +41,7 @@ public class A_StreamPractice {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        log.info("\n========= Stream Practice Menu =========");
+4e         log.info("\n========= Stream Practice Menu =========");
         while (true) {
             /* Uncomment to see options
             log.info("1. Filter and Map Example");
