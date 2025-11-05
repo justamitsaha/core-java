@@ -34,7 +34,10 @@ public class A_StreamPractice {
     static {
         Faker faker = new Faker();
         for (int i = 0; i < 15; i++) {
-            var employee = new Employee(faker.funnyName().name(), faker.random().nextInt(1, 5).toString(), faker.number().randomDouble(2, 10000, 100000));
+            var employee = new Employee(
+                    faker.funnyName().name(),
+                    faker.random().nextInt(1, 5).toString(),
+                    faker.number().randomDouble(2, 10000, 100000));
             System.out.println(employee);
             employees.add(employee);
         }
@@ -211,7 +214,7 @@ public class A_StreamPractice {
 
     // Object use case using Employee object
 
-    // 11️⃣ Map from objects
+    // 11️⃣ Change to Employee names
     public static void getEmployeeNames() {
         List<String> names = employees.stream()
                 .map(Employee::name)
@@ -222,12 +225,12 @@ public class A_StreamPractice {
     // 12️⃣ Filter by field
     public static void findEmployeesInDept() {
         List<Employee> itEmployees = employees.stream()
-                .filter(e -> e.dept().equals("Legal"))
+                .filter(e -> e.dept().equals("3"))
                 .toList();
-        log.info("IT Employees: {}", itEmployees);
+        log.info("Employee in department 3 {}", itEmployees);
     }
 
-    // 13️⃣ Max comparator
+    // 13️⃣ Find employee with the highest salary
     public static void findEmployeeWithHighestSalary() {
         Employee max = employees.stream()
                 .max(Comparator.comparing(Employee::salary))
@@ -235,17 +238,17 @@ public class A_StreamPractice {
         log.info("Highest Salary: {}", max);
     }
 
-    // 14️⃣ Average
+    // 14️⃣ Average Department 3 salary
     public static void averageSalaryInDept() {
         double avg = employees.stream()
-                .filter(e -> e.dept().equals("HR"))
+                .filter(e -> e.dept().equals("3"))
                 .mapToDouble(Employee::salary)
                 .average()
                 .orElse(0);
-        log.info("Average HR Salary: {}", avg);
+        log.info("Average Department 3 salary: {}", avg);
     }
 
-    // 15️⃣ Grouping
+    // 15️⃣ Grouping by department
     public static void groupByDepartment() {
         Map<String, List<Employee>> grouped = employees.stream()
                 .collect(Collectors.groupingBy(Employee::dept));
