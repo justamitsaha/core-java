@@ -30,18 +30,20 @@ public class A_StreamPractice {
     }
 
     private final static Logger log = LoggerFactory.getLogger(A_StreamPractice.class);
+
     static {
         Faker faker = new Faker();
         for (int i = 0; i < 15; i++) {
-            employees.add(new Employee(faker.funnyName().name(), faker.demographic().race(),
-                    faker.number().randomDouble(2, 10000, 100000)));
+            var employee = new Employee(faker.funnyName().name(), faker.random().nextInt(1, 5).toString(), faker.number().randomDouble(2, 10000, 100000));
+            System.out.println(employee);
+            employees.add(employee);
         }
-        log.info("Employees: {}", employees);
+
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-4e         log.info("\n========= Stream Practice Menu =========");
+        log.info("\n========= Stream Practice Menu =========");
         while (true) {
             /* Uncomment to see options
             log.info("1. Filter and Map Example");
@@ -75,15 +77,15 @@ public class A_StreamPractice {
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> basicFilterAndMap();
-                case 2 -> squareNumbers();
+                case 1 -> findEven_FilterCollect();
+                case 2 -> squareOfNumbers();
                 case 3 -> namesStartingWithA();
                 case 4 -> convertToUppercase();
-                case 5 -> countNumbersGreaterThan10();
+                case 5 -> countOfNumbersGreaterThan10();
                 case 6 -> removeDuplicatesAndSort();
                 case 7 -> topThreeHighest();
                 case 8 -> skipAndSum();
-                case 9 -> findMaxWithReduce();
+                case 9 -> findMax();
                 case 10 -> productOfElements();
                 case 11 -> getEmployeeNames();
                 case 12 -> findEmployeesInDept();
@@ -109,8 +111,8 @@ public class A_StreamPractice {
         }
     }
 
-    // 1️⃣ Filter + Collect
-    public static void basicFilterAndMap() {
+    // 1️⃣ filter even number from List
+    public static void findEven_FilterCollect() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
         List<Integer> evens = numbers.stream()
                 .filter(n -> n % 2 == 0)
@@ -118,8 +120,8 @@ public class A_StreamPractice {
         log.info("Even numbers: {}", evens);
     }
 
-    // 2️⃣ Map
-    public static void squareNumbers() {
+    // 2️⃣ Square of each number of list
+    public static void squareOfNumbers() {
         List<Integer> numbers = List.of(2, 3, 4, 5);
         List<Integer> squares = numbers.stream()
                 .map(n -> n * n)
@@ -127,7 +129,7 @@ public class A_StreamPractice {
         log.info("Squares: {}", squares);
     }
 
-    // 3️⃣ Filter with Strings
+    // 3️⃣ Names staring with A
     public static void namesStartingWithA() {
         List<String> names = List.of("Amit", "Rahul", "Ankit", "Ravi");
         List<String> result = names.stream()
@@ -136,7 +138,7 @@ public class A_StreamPractice {
         log.info("Names starting with A: {}", result);
     }
 
-    // 4️⃣ Map with method reference
+    // 4️⃣ Convert List to Uppercase
     public static void convertToUppercase() {
         List<String> names = List.of("amit", "rahul", "ankit");
         List<String> upper = names.stream()
@@ -145,8 +147,8 @@ public class A_StreamPractice {
         log.info("Uppercase: {}", upper);
     }
 
-    // 5️⃣ Count
-    public static void countNumbersGreaterThan10() {
+    // 5️⃣ Find the count of number greater than 10
+    public static void countOfNumbersGreaterThan10() {
         List<Integer> numbers = List.of(5, 10, 15, 20, 25);
         long count = numbers.stream()
                 .filter(n -> n > 10)
@@ -154,17 +156,18 @@ public class A_StreamPractice {
         log.info("Numbers > 10: {}", count);
     }
 
-    // 6️⃣ Distinct + Sorted
+    // 6️⃣ Find Distinct and sort reversed
     public static void removeDuplicatesAndSort() {
         List<Integer> numbers = List.of(3, 5, 3, 9, 1, 9);
         List<Integer> sorted = numbers.stream()
                 .distinct()
                 .sorted()
-                .toList();
+                .toList()
+                .reversed();
         log.info("Distinct + Sorted: {}", sorted);
     }
 
-    // 7️⃣ Limit
+    // 7️⃣ Find top 3 highest
     public static void topThreeHighest() {
         List<Integer> numbers = List.of(10, 40, 20, 70, 30);
         List<Integer> top3 = numbers.stream()
@@ -174,16 +177,23 @@ public class A_StreamPractice {
         log.info("Top 3 numbers: {}", top3);
     }
 
-    // 8️⃣ Skip
+    // 8️⃣ Skip first 5 and add
     public static void skipAndSum() {
         int sum = IntStream.rangeClosed(1, 10)
                 .skip(5)
                 .sum();
         log.info("Sum after skipping first 5: {}", sum);
+        List<Integer> numbers = List.of(3, 5, 3, 9, 1, 9, 8, 6, 4);
+        int sum2 = numbers
+                .stream()
+                .skip(5)
+                .mapToInt(value -> value)
+                .sum();
+        log.info("Sum after skipping first 5: {}", sum2);
     }
 
-    // 9️⃣ Reduce (max)
-    public static void findMaxWithReduce() {
+    // 9️⃣ Find max
+    public static void findMax() {
         List<Integer> numbers = List.of(3, 10, 5, 7, 15, 2);
         int max = numbers.stream()
                 .reduce(Integer::max)
@@ -199,8 +209,7 @@ public class A_StreamPractice {
         log.info("Product: {}", product);
     }
 
-    // Create a few Employee records for later use
-
+    // Object use case using Employee object
 
     // 11️⃣ Map from objects
     public static void getEmployeeNames() {
