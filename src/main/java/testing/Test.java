@@ -2,6 +2,8 @@ package testing;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.function.BinaryOperator;
@@ -9,32 +11,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Test {
+    private final static Logger log = LoggerFactory.getLogger(Test.class);
+
     public static void main(String[] args) {
-        Set<Employee> set1 = new TreeSet<>(Comparator.comparing(employee -> employee.salary));
-        set1.add(new Employee(50000, 28));
-        set1.add(new Employee(23533, 33));
-        set1.add(new Employee(92383, 8));
-        set1.add(new Employee(7623, 43));
-        System.out.println(set1);
-    }
-}
-
-
-
-class Employee {
-    int salary;
-    int age;
-
-    public Employee(int salary, int age) {
-        super();
-        this.salary = salary;
-        this.age = age;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Employee [salary=" + salary + ", age=" + age + "]";
+        Map<String, Integer> map = Map.of("A", 3, "B", 1, "C", 5);
+        var x = map
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .collect(
+                        Collectors.toMap(stringIntegerEntry -> stringIntegerEntry.getKey(),
+                                stringIntegerEntry -> stringIntegerEntry.getValue(),
+                                (o, o2) -> o,
+                                new LinkedHashMap<String,Integer>()
+                                )
+                );
+        System.out.println(x);
     }
 }
 

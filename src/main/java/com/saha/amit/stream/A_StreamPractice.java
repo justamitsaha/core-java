@@ -341,15 +341,29 @@ public class A_StreamPractice {
     // 25️⃣ Sort map by value descending
     public static void sortMapByValueDescending() {
         Map<String, Integer> map = Map.of("A", 3, "B", 1, "C", 5);
-        LinkedHashMap<String, Integer> sorted =
-                map.entrySet().stream()
-                        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
-                        .collect(Collectors.toMap(
+        LinkedHashMap<String, Integer> sorted = map
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .collect(
+                        Collectors.toMap(
                                 Map.Entry::getKey,
                                 Map.Entry::getValue,
                                 (e1, e2) -> e1,
                                 LinkedHashMap::new
                         ));
         log.info("Sorted by value: {}", sorted);
+        sorted = map
+                .entrySet()
+                .stream()
+                .sorted((o1, o2) -> o1.getValue()-o2.getValue()) //Ascending
+                //.sorted((o1, o2) -> o2.getValue()-o1.getValue()) //Descending
+                .collect(Collectors.toMap(
+                        o -> o.getKey(),
+                        o -> o.getValue(),
+                        (integer, integer2) -> integer,
+                        () -> new LinkedHashMap<>()
+                ));
+
     }
 }
